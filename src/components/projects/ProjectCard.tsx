@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
-import { Project } from '@/types/project'; // We'll define this type
+import { Project } from '@/types/project';
 
 interface ProjectCardProps {
     project: Project;
@@ -16,15 +16,14 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
         <motion.div
             layoutId={`project-card-${project.id}`}
             onClick={onClick}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            whileHover={{ y: -10, transition: { duration: 0.3 } }}
-            className="group relative bg-[#0a0a0a] border border-white/5 rounded-2xl overflow-hidden cursor-pointer min-h-[400px] flex flex-col"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="group relative bg-concept-gray border border-concept-blue/10 rounded-none overflow-hidden cursor-pointer min-h-[420px] flex flex-col hover:border-concept-blue transition-colors duration-300"
         >
             {/* Image container */}
-            <div className="h-64 w-full relative overflow-hidden shrinkage-0">
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10 opacity-60" />
+            <div className="h-60 w-full relative overflow-hidden flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-t from-concept-gray/20 via-transparent to-transparent z-10" />
                 <motion.div
                     className="relative w-full h-full"
                     layoutId={`project-image-${project.id}`}
@@ -34,43 +33,40 @@ const ProjectCard = ({ project, onClick }: ProjectCardProps) => {
                         alt={project.title}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                 </motion.div>
 
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 bg-black/50 backdrop-blur-md border border-white/10 rounded-full text-xs text-gray-300 uppercase tracking-wider">
+                    <span className="px-3 py-1 bg-concept-blue text-concept-white rounded-none text-[10px] font-bold uppercase tracking-widest">
                         {project.category}
                     </span>
                 </div>
             </div>
 
             {/* Content Container */}
-            <div className="p-6 flex-1 flex flex-col relative z-20 bg-[#0a0a0a] border-t border-white/5">
-                <div className="flex-1">
+            <div className="p-6 flex-1 flex flex-col justify-between relative z-20 bg-concept-gray border-t border-concept-blue/10">
+                <div className="space-y-3">
                     <motion.h3
                         layoutId={`project-title-${project.id}`}
-                        className="text-2xl font-bold text-white mb-2 group-hover:text-digital-primary transition-colors"
+                        className="text-lg font-bold text-concept-blue font-montserrat uppercase tracking-wider group-hover:text-concept-blue"
                     >
                         {project.title}
                     </motion.h3>
                     <motion.p
                         layoutId={`project-desc-${project.id}`}
-                        className="text-gray-400 text-sm line-clamp-3 mb-6"
+                        className="text-concept-blue/70 text-xs font-poppins font-light leading-relaxed line-clamp-3"
                     >
                         {project.description}
                     </motion.p>
                 </div>
 
-                <div className="mt-auto flex items-center text-sm font-medium text-digital-primary">
-                    <span className="mr-2">Ver Detalhes</span>
-                    <ArrowUpRight className="w-4 h-4 transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                <div className="mt-6 pt-4 border-t border-concept-blue/5 flex items-center justify-between text-xs font-bold uppercase tracking-widest text-concept-blue">
+                    <span>Ver Ativo</span>
+                    <ArrowUpRight className="w-4 h-4 text-concept-yellow transform transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                 </div>
             </div>
-
-            {/* Hover Glow Effect */}
-            <div className="absolute inset-0 border-2 border-digital-primary/0 rounded-2xl group-hover:border-digital-primary/50 transition-colors duration-500 pointer-events-none" />
         </motion.div>
     );
 };

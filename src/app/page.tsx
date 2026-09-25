@@ -8,16 +8,20 @@ import Background from '@/components/Background';
 
 // Lazy Load heavy components
 const MethodEvolution = dynamic(() => import('@/features/method/MethodEvolution'), {
-    loading: () => <div className="min-h-screen bg-digital-black" />,
+    loading: () => <div className="min-h-screen bg-concept-blue" />,
     ssr: false // Optional: Disable SSR if not critical for initial SEO or uses window
 });
 
 const ProjectsSection = dynamic(() => import('@/components/ProjectsSection'), {
-    loading: () => <div className="min-h-screen bg-digital-black" />,
+    loading: () => <div className="min-h-screen bg-concept-blue" />,
+});
+
+const SystemsWaaS = dynamic(() => import('@/components/SystemsWaaS'), {
+    loading: () => <div className="min-h-screen bg-concept-blue" />,
 });
 
 const Contact = dynamic(() => import('@/components/Contact'), {
-    loading: () => <div className="min-h-[500px] bg-digital-black" />,
+    loading: () => <div className="min-h-[500px] bg-concept-blue" />,
 });
 
 const HomeContent = () => {
@@ -41,6 +45,7 @@ const HomeContent = () => {
             <Background />
             <Hero />
             <ProjectsSection />
+            <SystemsWaaS />
             <MethodEvolution />
             <Contact />
         </>
@@ -49,7 +54,7 @@ const HomeContent = () => {
 
 export default function Home() {
     return (
-        <Suspense fallback={<div className="min-h-screen bg-digital-black" />}>
+        <Suspense fallback={<div className="min-h-screen bg-concept-blue" />}>
             <HomeContent />
         </Suspense>
     );

@@ -1,0 +1,9 @@
+[
+  {
+    "ticker": "EXEMPLO3",
+    "tipo": "acao",
+    "quantidade": 100,
+    "precoMedio": 25.5,
+    "notas": "Apague este exemplo e adicione seus ativos reais (acao, fii, renda_fixa, cripto, etc)"
+  }
+]

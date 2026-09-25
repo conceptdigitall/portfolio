@@ -3,98 +3,110 @@ import { Project } from "@/types/project";
 export const projects: Project[] = [
     {
         id: 1,
-        title: "E-commerce Magnético para Produtos Infantis",
-        category: "E-commerce",
-        description: "E-commerce focado na jornada de compra de mães e pais, maximizando o LTV através da confiança e experiência do usuário.",
+        title: "E-commerce Premium para Produtos Infantis",
+        category: "Concept Systems (WaaS)",
+        description: "Investimento estratégico em ativos digitais de alto padrão para marcas infantis. Engenharia de conversão voltada a maximizar o LTV através de uma jornada de compra impecável.",
         image_url: "/projects/concept-ecommerce-baby.jpg",
-        demo_link: "https://concept-ecommerce.vercel.app/"
+        demo_link: "https://concept-ecommerce.vercel.app/",
+        profile: "empresa"
     },
     {
         id: 2,
-        title: "Página de Alta Conversão para Dentistas",
-        category: "Landing Pages",
-        description: "Presença digital estratégica para profissionais de odontologia que desejam atrair pacientes particulares de alto ticket.",
+        title: "Posicionamento Digital para Clínicas Odontológicas",
+        category: "Concept Landing Pages",
+        description: "Ativo de alta conversão para profissionais de odontologia. Arquitetura focada em elevar o posicionamento digital do negócio e captar pacientes de alto ticket.",
         image_url: "/projects/dentist-mockup.jpg",
-        demo_link: "https://concept-dentista.vercel.app/"
+        demo_link: "https://concept-dentista.vercel.app/",
+        profile: "autonomo"
     },
     {
         id: 3,
-        title: "Posicionamento Premium para Advogados",
-        category: "Landing Pages",
-        description: "Uma máquina de gerar autoridade online para escritórios de advocacia, transformando visitantes em clientes qualificados.",
+        title: "Engenharia de Autoridade para Escritórios de Advocacia",
+        category: "Concept Landing Pages",
+        description: "Ativo digital de alto padrão para escritórios de advocacia de elite. Estrutura focada em transformar acessos em clientes sob um design elegante e sóbrio.",
         image_url: "/projects/lawyer-mockup.jpg",
-        demo_link: "https://concept-law.vercel.app/"
+        demo_link: "https://concept-law.vercel.app/",
+        profile: "autonomo"
     },
     {
         id: 4,
-        title: "Sistema de Gestão de Estoque Inteligente",
-        category: "Sistemas",
-        description: "Marketplace de ativos digitais e controle de estoque automatizado, reduzindo custos operacionais de marcas de luxo.",
+        title: "Sistema Multi-Tenant de Gestão de Estoque",
+        category: "Concept Systems (WaaS)",
+        description: "Engenharia de software sob medida para marcas corporativas. Sistema WaaS com automação de fluxo operacional e otimização de estoque em tempo real.",
         image_url: "/projects/concept-stock-inventory.jpg",
-        demo_link: "https://concept-stock.vercel.app/"
+        demo_link: "https://concept-stock.vercel.app/",
+        profile: "empresa"
     },
     {
         id: 5,
-        title: "E-commerce de Moda que Vende Todo Dia",
-        category: "E-commerce",
-        description: "Loja virtual arquitetada para o segmento de moda, reduzindo objeções de compra e aumentando o valor médio do pedido.",
+        title: "Ecossistema de Vendas E-commerce de Moda",
+        category: "Concept Systems (WaaS)",
+        description: "Solução robusta de e-commerce projetada para marcas premium de vestuário. Arquitetura voltada a mitigar atritos operacionais e impulsionar o valor do pedido médio.",
         image_url: "/projects/concept-ecommerce-cloth.jpg",
-        demo_link: "https://concept-ecommerce-cloth.vercel.app/"
+        demo_link: "https://concept-ecommerce-cloth.vercel.app/",
+        profile: "empresa"
     },
     {
         id: 6,
-        title: "Máquina de Agendamento Automático",
-        category: "Sistemas",
-        description: "Sistema completo de agendamentos que funciona 24/7, garantindo a agenda cheia da sua equipe de serviços.",
+        title: "Plataforma Multi-Tenant de Agendamento Automático",
+        category: "Concept Systems (WaaS)",
+        description: "Sistema WaaS de agendamento e fluxo de trabalho integrado. Desenvolvido para clínicas e redes de atendimento, otimizando o ROI e a alocação de equipes.",
         image_url: "/projects/concept-booking.jpg",
-        demo_link: "https://concept-booking.vercel.app/"
+        demo_link: "https://concept-booking.vercel.app/",
+        profile: "empresa"
     },
     {
         id: 7,
-        title: "Dashboard Financeiro Estratégico",
-        category: "Sistemas",
-        description: "Visualização inteligente de dados para tomadas de decisão rápidas que impactam diretamente na lucratividade da empresa.",
+        title: "Dashboard Financeiro e Operacional Estratégico",
+        category: "Concept Systems (WaaS)",
+        description: "Dashboard corporativo sob medida. Visualização inteligente de dados operacionais e de prospecção com foco em tomadas de decisão rápidas que impactam a lucratividade.",
         image_url: "/projects/concept-finance.jpg",
-        demo_link: "https://concept-finance.vercel.app/"
+        demo_link: "https://concept-finance.vercel.app/",
+        profile: "empresa"
     },
     {
         id: 8,
-        title: "Máquina de Leads para Clínicas de Estética",
-        category: "Landing Pages",
-        description: "Página de vendas focada em desejo, luxo e rejuvenescimento para lotar a agenda da sua clínica.",
+        title: "Página de Alta Conversão para Clínicas de Estética",
+        category: "Concept Landing Pages",
+        description: "Ativo de alta conversão voltado ao mercado de estética de luxo. Design planejado para elevar a autoridade do profissional e captar contatos de alto padrão.",
         image_url: "/projects/concept-estetica.jpg",
-        demo_link: "https://concept-estetica.vercel.app/"
+        demo_link: "https://concept-estetica.vercel.app/",
+        profile: "autonomo"
     },
     {
         id: 9,
-        title: "Página de Vendas para Imóveis de Alto Padrão",
-        category: "Landing Pages",
-        description: "Design sofisticado e estrutura persuasiva para conectar corretores aos clientes do mercado de luxo.",
+        title: "Página de Vendas para Mercado Imobiliário de Luxo",
+        category: "Concept Landing Pages",
+        description: "Design sofisticado com alto índice de respiro para apresentar ativos de alto padrão. Arquitetura persuasiva focada em conectar corretores e incorporadoras a clientes qualificados.",
         image_url: "/projects/concept-imobiliaria.jpg",
-        demo_link: "https://concept-imobiliaria-luxo.vercel.app/"
+        demo_link: "https://concept-imobiliaria-luxo.vercel.app/",
+        profile: "autonomo"
     },
     {
         id: 10,
-        title: "Captação de Clientes para Empreiteiras",
-        category: "Landing Pages",
-        description: "Apresente suas obras com autoridade e receba orçamentos qualificados de clientes interessados em construir.",
+        title: "Apresentação e Captação B2B para Construtoras",
+        category: "Concept Landing Pages",
+        description: "Ativo digital focado no posicionamento de autoridade de construtoras e empreiteiras. Apresentação impecável de obras concluídas com canal direto para captação de orçamentos.",
         image_url: "/projects/concept-empreiteira.jpg",
-        demo_link: "https://concept-empreiteira.vercel.app/"
+        demo_link: "https://concept-empreiteira.vercel.app/",
+        profile: "empresa"
     },
     {
         id: 11,
-        title: "Funil de Vendas para Construção Civil",
-        category: "Landing Pages",
-        description: "Variante estratégica otimizada para superar objeções financeiras e gerar leads de alto valor.",
+        title: "Funil de Prospecção para Construção Civil",
+        category: "Concept Landing Pages",
+        description: "Estrutura focada em transformar acessos em clientes qualificados para incorporação e obras industriais. Variante estratégica otimizada para captação de leads corporativos.",
         image_url: "/projects/concept-empreiteira2.jpg",
-        demo_link: "https://concept-empreiteira2.vercel.app/"
+        demo_link: "https://concept-empreiteira2.vercel.app/",
+        profile: "empresa"
     },
     {
         id: 12,
-        title: "E-commerce de Alta Conversão para Streetwear",
-        category: "E-commerce",
-        description: "Loja virtual imersiva e focada no estilo urbano, pronta para escalar o faturamento da sua marca de Street.",
+        title: "E-commerce de Alto Padrão para Streetwear",
+        category: "Concept Systems (WaaS)",
+        description: "Loja virtual imersiva e de alta performance para marcas de streetwear premium. Engenharia focada em velocidade máxima, respiro visual e conversão imediata.",
         image_url: "/projects/streetwear.png",
-        demo_link: "https://concept-streetwear-ecommerce.vercel.app/"
+        demo_link: "https://concept-streetwear-ecommerce.vercel.app/",
+        profile: "empresa"
     }
 ];

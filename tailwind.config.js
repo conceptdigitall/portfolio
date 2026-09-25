@@ -7,14 +7,20 @@ export default {
     theme: {
         extend: {
             colors: {
-                'digital-black': '#0B1120', // Deepest Navy (Base Background)
-                'digital-primary': '#C5A059', // Classic Gold (Main Accent)
-                'digital-secondary': '#334155', // Graphite Grey (Secondary Backgrounds)
-                'digital-white': '#F8FAFC', // Ice White (Text)
+                'digital-black': '#0624C7', // Azul Escuro profundo
+                'digital-primary': '#FCE026', // Amarelo Sotaque
+                'digital-secondary': '#FFFFFF', // Branco puro
+                'digital-white': '#FFFFFF', // Branco puro
+                'concept-blue': '#0624C7',
+                'concept-white': '#FFFFFF',
+                'concept-yellow': '#FCE026',
+                'concept-gray': '#F8FAFC',
+                'concept-darkblue': '#041885',
             },
             fontFamily: {
-                montserrat: ['Montserrat', 'sans-serif'],
-                inter: ['Inter', 'sans-serif'],
+                montserrat: ['var(--font-montserrat)', 'sans-serif'],
+                inter: ['var(--font-inter)', 'sans-serif'],
+                poppins: ['var(--font-poppins)', 'sans-serif'],
             },
             backgroundImage: {
                 'luxury-gradient': 'linear-gradient(to bottom right, #001233, #001f3f, #002855)',
@@ -23,7 +29,9 @@ export default {
                 '-10': '-10deg',
             },
             borderRadius: {
-                'card': '20px',
+                'card': '2px',
+                'sharp': '2px',
+                'none': '0px',
             },
             keyframes: {
                 float: {

@@ -5,7 +5,7 @@ import { Project } from '@/types/project';
 export const useProjectFilter = () => {
     const [selectedCategory, setSelectedCategory] = useState("Todos");
 
-    const categories = ["Todos", "Landing Pages", "E-commerce", "Sistemas"];
+    const categories = ["Todos", "Concept Landing Pages", "Concept Systems (WaaS)"];
 
     const filteredProjects = useMemo(() => {
         if (selectedCategory === "Todos") return projects;

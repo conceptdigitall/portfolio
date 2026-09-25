@@ -1,6 +1,7 @@
--- Rode este script na aba "SQL Editor" do Supabase
+-- Script para criação das tabelas de métricas do Portfólio Concept
+-- Pode ser executado diretamente na aba "SQL Editor" do seu painel Supabase
 
-CREATE TABLE IF NOT EXISTS page_views (
+CREATE TABLE IF NOT EXISTS public.page_views (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     path TEXT NOT NULL,
     device TEXT,
@@ -9,48 +10,66 @@ CREATE TABLE IF NOT EXISTS page_views (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS project_clicks (
+CREATE TABLE IF NOT EXISTS public.project_clicks (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     project_id INTEGER NOT NULL,
     project_title TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS form_events (
+CREATE TABLE IF NOT EXISTS public.form_events (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     event_type TEXT NOT NULL, -- 'start' ou 'submit'
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
-CREATE TABLE IF NOT EXISTS cta_clicks (
+CREATE TABLE IF NOT EXISTS public.cta_clicks (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     button_id TEXT NOT NULL, -- 'whatsapp_contact', 'email_contact', 'header_contact' etc
     path TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
--- Tentar adicionar a coluna max_scroll caso existam tabelas antigas (Ignora se já existir)
+-- Índices para otimização de consultas e velocidade nos dashboards
+CREATE INDEX IF NOT EXISTS idx_page_views_created_at ON public.page_views (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_project_clicks_created_at ON public.project_clicks (created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_project_clicks_title ON public.project_clicks (project_title);
+CREATE INDEX IF NOT EXISTS idx_cta_clicks_created_at ON public.cta_clicks (created_at DESC);
+
+-- Permissões de RLS para o Portfólio (anon pode inserir para coletar métricas)
+-- e authenticated/service_role pode consultar e gerenciar
+ALTER TABLE public.page_views ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.project_clicks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.form_events ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.cta_clicks ENABLE ROW LEVEL SECURITY;
+
 DO $$
 BEGIN
-    BEGIN
-        ALTER TABLE page_views ADD COLUMN max_scroll INTEGER DEFAULT 0;
-    EXCEPTION
-        WHEN duplicate_column THEN null;
-    END;
+    DROP POLICY IF EXISTS "Permitir insercao anonima page_views" ON public.page_views;
+    CREATE POLICY "Permitir insercao anonima page_views" ON public.page_views FOR INSERT TO anon, authenticated WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Permitir atualizacao anonima page_views" ON public.page_views;
+    CREATE POLICY "Permitir atualizacao anonima page_views" ON public.page_views FOR UPDATE TO anon, authenticated USING (true);
+
+    DROP POLICY IF EXISTS "Permitir insercao anonima project_clicks" ON public.project_clicks;
+    CREATE POLICY "Permitir insercao anonima project_clicks" ON public.project_clicks FOR INSERT TO anon, authenticated WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Permitir insercao anonima form_events" ON public.form_events;
+    CREATE POLICY "Permitir insercao anonima form_events" ON public.form_events FOR INSERT TO anon, authenticated WITH CHECK (true);
+
+    DROP POLICY IF EXISTS "Permitir insercao anonima cta_clicks" ON public.cta_clicks;
+    CREATE POLICY "Permitir insercao anonima cta_clicks" ON public.cta_clicks FOR INSERT TO anon, authenticated WITH CHECK (true);
+
+    -- Permissões de leitura para o Dashboard do CRM e Admin
+    DROP POLICY IF EXISTS "Permitir leitura autenticada page_views" ON public.page_views;
+    CREATE POLICY "Permitir leitura autenticada page_views" ON public.page_views FOR SELECT TO anon, authenticated USING (true);
+
+    DROP POLICY IF EXISTS "Permitir leitura autenticada project_clicks" ON public.project_clicks;
+    CREATE POLICY "Permitir leitura autenticada project_clicks" ON public.project_clicks FOR SELECT TO anon, authenticated USING (true);
+
+    DROP POLICY IF EXISTS "Permitir leitura autenticada form_events" ON public.form_events;
+    CREATE POLICY "Permitir leitura autenticada form_events" ON public.form_events FOR SELECT TO anon, authenticated USING (true);
+
+    DROP POLICY IF EXISTS "Permitir leitura autenticada cta_clicks" ON public.cta_clicks;
+    CREATE POLICY "Permitir leitura autenticada cta_clicks" ON public.cta_clicks FOR SELECT TO anon, authenticated USING (true);
 END $$;
-
--- ====== FORÇAR PERMISSÕES PÚBLICAS PARA MVP (Desliga a fechadura RLS) ====== --
--- 1. Garante que os tokens públicos possam acessar o ambiente público
-GRANT USAGE ON SCHEMA public TO anon, authenticated;
-
--- 2. Concede controle total das tabelas para o token público
-GRANT ALL ON TABLE page_views TO anon, authenticated;
-GRANT ALL ON TABLE project_clicks TO anon, authenticated;
-GRANT ALL ON TABLE form_events TO anon, authenticated;
-GRANT ALL ON TABLE cta_clicks TO anon, authenticated;
-
--- 3. Desliga a checagem individual por linha (RLS)
-ALTER TABLE page_views DISABLE ROW LEVEL SECURITY;
-ALTER TABLE project_clicks DISABLE ROW LEVEL SECURITY;
-ALTER TABLE form_events DISABLE ROW LEVEL SECURITY;
-ALTER TABLE cta_clicks DISABLE ROW LEVEL SECURITY;

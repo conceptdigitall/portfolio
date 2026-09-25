@@ -11,21 +11,22 @@ interface FilterBarProps {
 
 const FilterBar = ({ categories, selectedCategory, onSelectCategory }: FilterBarProps) => {
     return (
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap gap-3">
             {categories.map((category) => (
                 <button
                     key={category}
                     onClick={() => onSelectCategory(category)}
-                    className={`relative px-6 py-2 rounded-full text-sm uppercase tracking-wider transition-all duration-300 ${selectedCategory === category
-                        ? 'text-black font-bold'
-                        : 'text-gray-400 hover:text-white'
-                        }`}
+                    className={`relative px-5 py-2.5 rounded-none text-xs font-bold uppercase tracking-widest transition-all border ${
+                        selectedCategory === category
+                            ? 'text-concept-white border-concept-blue'
+                            : 'text-concept-blue/60 border-concept-blue/10 hover:border-concept-blue hover:text-concept-blue bg-concept-gray'
+                    }`}
                 >
                     {selectedCategory === category && (
                         <motion.div
                             layoutId="activeFilter"
-                            className="absolute inset-0 bg-digital-primary rounded-full"
-                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                            className="absolute inset-0 bg-concept-blue"
+                            transition={{ type: "spring", bounce: 0.1, duration: 0.4 }}
                         />
                     )}
                     <span className="relative z-10">{category}</span>

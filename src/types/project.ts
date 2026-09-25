@@ -5,4 +5,5 @@ export interface Project {
     description: string;
     image_url: string;
     demo_link: string;
+    profile: 'autonomo' | 'empresa';
 }

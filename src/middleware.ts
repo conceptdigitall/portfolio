@@ -13,7 +13,7 @@ export function middleware(req: NextRequest) {
 
             // Senha provisória escolhida: teste123
             // Usuário pode ser "admin"
-            if (user === 'admin' && pwd === 'teste123') {
+            if (user === 'concept' && pwd === 'K2A#@A4SN5!$6%') {
                 return NextResponse.next();
             }
         }

@@ -21,7 +21,6 @@ const Contact = () => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Register form submit event
         trackEvent('form_events', { event_type: 'submit' });
         trackEvent('cta_clicks', { button_id: contactMethod === 'whatsapp' ? 'whatsapp_contact' : 'email_contact', path: window.location.pathname });
 
@@ -36,40 +35,40 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-32 relative overflow-hidden bg-[#020408]">
-            {/* Ambient Lighting */}
-            <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-digital-primary/10 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-digital-primary/5 rounded-full blur-[100px] pointer-events-none" />
+        <section id="contact" className="py-32 relative overflow-hidden bg-concept-blue">
+            {/* Fine Grid Background */}
+            <div className="absolute inset-0 fine-grid opacity-20 pointer-events-none" />
 
-            {/* Grid Pattern */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none opacity-20" />
+            {/* Fine Guide Lines */}
+            <div className="absolute top-0 left-[15%] w-[1px] h-full bg-white/[0.03] pointer-events-none" />
+            <div className="absolute top-0 right-[15%] w-[1px] h-full bg-white/[0.03] pointer-events-none" />
 
             <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 item-center">
+                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center md:pl-[15%] md:pr-[15%]">
 
                     {/* Left Column: Copy */}
                     <div className="space-y-8">
                         <div className="inline-block">
-                            <span className="text-digital-primary text-xs font-bold uppercase tracking-[0.2em] bg-digital-primary/10 px-3 py-1 rounded-full border border-digital-primary/20">
+                            <span className="text-concept-yellow text-xs font-bold uppercase tracking-[0.25em] border border-concept-yellow/30 px-3 py-1 rounded-none bg-white/5">
                                 Fale Conosco
                             </span>
                         </div>
 
-                        <h2 className="text-5xl md:text-6xl font-bold font-montserrat tracking-tight leading-tight">
+                        <h2 className="text-4xl md:text-5xl font-black font-montserrat tracking-tight leading-tight text-white uppercase">
                             Pronto para <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-500">
+                            <span className="text-concept-yellow">
                                 Escalar?
                             </span>
                         </h2>
 
-                        <p className="text-gray-400 text-lg leading-relaxed max-w-md border-l-2 border-digital-primary/30 pl-6">
-                            Construímos ecossistemas digitais de alta performance. Entre em contato para uma análise de viabilidade do seu projeto.
+                        <p className="text-white/80 text-sm leading-relaxed max-w-md border-l-2 border-concept-yellow/30 pl-6 font-poppins font-light">
+                            Construímos ecossistemas digitais e ativos de alto padrão. Entre em contato para uma análise estratégica de viabilidade do seu projeto.
                         </p>
 
                         <div className="flex items-center gap-6 pt-4">
                             <div className="flex -space-x-4">
                                 {[1, 2, 3].map((i) => (
-                                    <div key={i} className="w-10 h-10 rounded-full bg-gray-800 border-2 border-[#020408] overflow-hidden flex items-center justify-center relative">
+                                    <div key={i} className="w-10 h-10 rounded-full bg-concept-blue border-2 border-white/10 overflow-hidden flex items-center justify-center relative">
                                         <Image
                                             src={`/avatars/partner-${i}.png`}
                                             alt={`Parceiro ${i}`}
@@ -81,35 +80,32 @@ const Contact = () => {
                                     </div>
                                 ))}
                             </div>
-                            <div className="text-sm">
-                                <p className="text-white font-bold">Junte-se a +50 Parceiros</p>
-                                <p className="text-digital-primary text-xs flex items-center gap-1">
-                                    <CheckCircle className="w-3 h-3" /> Resposta em &lt; 2h
+                            <div className="text-xs">
+                                <p className="text-white font-bold font-montserrat uppercase tracking-wider">Junte-se a +50 Parceiros</p>
+                                <p className="text-concept-yellow text-[10px] uppercase font-bold flex items-center gap-1 mt-1 tracking-wider">
+                                    <CheckCircle className="w-3.5 h-3.5" /> Resposta em &lt; 2h
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    {/* Right Column: Glass Form */}
+                    {/* Right Column: Form */}
                     <div className="relative">
-                        {/* Decorative Border Gradient */}
-                        <div className="absolute -inset-[1px] bg-gradient-to-r from-digital-secondary via-digital-primary to-digital-secondary rounded-2xl opacity-30 blur-sm"></div>
-
-                        <div className="relative bg-[#0A0A0A]/90 backdrop-blur-xl rounded-2xl p-8 md:p-10 border border-white/10 shadow-2xl">
+                        <div className="relative bg-[#041885]/40 p-8 md:p-10 border border-white/10 rounded-none shadow-2xl">
                             <div className="mb-8">
-                                <h3 className="text-xl font-bold text-white mb-2">Iniciar Conversa</h3>
-                                <p className="text-gray-500 text-sm">Preencha os detalhes abaixo para agendar uma call.</p>
+                                <h3 className="text-lg font-bold font-montserrat uppercase tracking-wider text-white mb-1">Iniciar Conversa</h3>
+                                <p className="text-white/60 text-xs font-poppins font-light">Preencha os detalhes abaixo para agendar uma reunião de viabilidade.</p>
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-6">
                                 {/* Contact Method Toggle */}
-                                <div className="flex gap-2 mb-6 p-1 bg-white/5 rounded-lg w-fit border border-white/5">
+                                <div className="flex gap-2 mb-6 p-1 bg-white/5 rounded-none w-fit border border-white/5">
                                     <button
                                         type="button"
                                         onClick={() => setContactMethod('email')}
-                                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${contactMethod === 'email'
-                                            ? 'bg-digital-primary text-black shadow-lg'
-                                            : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                        className={`px-4 py-2 rounded-none text-xs font-bold uppercase tracking-wider transition-all duration-300 ${contactMethod === 'email'
+                                            ? 'bg-concept-yellow text-concept-blue'
+                                            : 'text-white/60 hover:text-white hover:bg-white/5'
                                             }`}
                                     >
                                         Email
@@ -117,9 +113,9 @@ const Contact = () => {
                                     <button
                                         type="button"
                                         onClick={() => setContactMethod('whatsapp')}
-                                        className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 ${contactMethod === 'whatsapp'
-                                            ? 'bg-[#25D366] text-black shadow-lg'
-                                            : 'text-gray-400 hover:text-white hover:bg-white/5'
+                                        className={`px-4 py-2 rounded-none text-xs font-bold uppercase tracking-wider transition-all duration-300 ${contactMethod === 'whatsapp'
+                                            ? 'bg-[#25D366] text-concept-blue'
+                                            : 'text-white/60 hover:text-white hover:bg-white/5'
                                             }`}
                                     >
                                         WhatsApp
@@ -130,7 +126,7 @@ const Contact = () => {
                                 <div className="group relative">
                                     <label
                                         htmlFor="name"
-                                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'name' || formData.name ? 'top-[-10px] text-[10px] text-digital-primary bg-[#0A0A0A] px-2' : 'top-4 text-gray-500 text-sm'
+                                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'name' || formData.name ? 'top-[-8px] text-[10px] text-concept-yellow bg-[#03115A] px-2' : 'top-4 text-white/50 text-xs'
                                             }`}
                                     >
                                         Seu Nome
@@ -139,7 +135,7 @@ const Contact = () => {
                                         id="name"
                                         name="name"
                                         type="text"
-                                        className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none"
+                                        className="w-full bg-[#03115A]/40 border border-white/10 rounded-none p-4 text-white focus:border-concept-yellow focus:ring-1 focus:ring-concept-yellow transition-all outline-none text-sm font-poppins font-light"
                                         value={formData.name}
                                         onChange={(e) => {
                                             setFormData({ ...formData, name: e.target.value });
@@ -159,15 +155,15 @@ const Contact = () => {
                                 <div className="group relative">
                                     <label
                                         htmlFor="message"
-                                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'message' || formData.message ? 'top-[-10px] text-[10px] text-digital-primary bg-[#0A0A0A] px-2' : 'top-4 text-gray-500 text-sm'
+                                        className={`absolute left-4 transition-all duration-300 pointer-events-none ${focusedField === 'message' || formData.message ? 'top-[-8px] text-[10px] text-concept-yellow bg-[#03115A] px-2' : 'top-4 text-white/50 text-xs'
                                             }`}
                                     >
-                                        Sobre o Projeto
+                                        Sobre o Ativo
                                     </label>
                                     <textarea
                                         id="message"
                                         name="message"
-                                        className="w-full bg-[#111] border border-white/10 rounded-lg p-4 text-white focus:border-digital-primary/50 focus:ring-1 focus:ring-digital-primary/50 transition-all outline-none resize-none h-32"
+                                        className="w-full bg-[#03115A]/40 border border-white/10 rounded-none p-4 text-white focus:border-concept-yellow focus:ring-1 focus:ring-concept-yellow transition-all outline-none resize-none h-32 text-sm font-poppins font-light"
                                         value={formData.message}
                                         onChange={(e) => {
                                             setFormData({ ...formData, message: e.target.value });
@@ -178,22 +174,23 @@ const Contact = () => {
                                             checkFormStart();
                                         }}
                                         onBlur={() => setFocusedField(null)}
-                                        aria-label="Sobre o Projeto"
+                                        aria-label="Sobre o Ativo"
                                         required
                                     />
                                 </div>
 
                                 <button
                                     type="submit"
-                                    className={`w-full group relative overflow-hidden rounded-lg p-4 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_20px_rgba(197,160,89,0.3)] ${contactMethod === 'whatsapp' ? 'bg-[#25D366]' : 'bg-digital-primary'
-                                        }`}
+                                    className={`w-full group relative overflow-hidden rounded-none p-4 transition-all duration-300 flex items-center justify-center gap-2 border-[1.5px] ${
+                                        contactMethod === 'whatsapp' 
+                                            ? 'bg-[#25D366] border-[#25D366] text-concept-blue' 
+                                            : 'bg-concept-yellow border-concept-yellow text-concept-blue hover:bg-concept-white'
+                                    }`}
                                 >
-                                    <div className="relative z-10 flex items-center justify-center gap-2 text-black font-bold uppercase tracking-widest text-sm">
-                                        {contactMethod === 'whatsapp' ? 'Iniciar no WhatsApp' : 'Enviar Email'}
+                                    <div className="relative z-10 flex items-center justify-center gap-2 font-bold uppercase tracking-widest text-xs">
+                                        {contactMethod === 'whatsapp' ? 'Iniciar no WhatsApp' : 'Enviar Solicitação'}
                                         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                                     </div>
-                                    {/* Buttton Shine Effect */}
-                                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700" />
                                 </button>
                             </form>
                         </div>

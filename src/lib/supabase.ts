@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://pyhcxxjnxmxmvengmppk.supabase.co';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB5aGN4eGpuem14bXZlbmdtcHBrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDI0NDQ1MjgsImV4cCI6MjA1ODA0MDUyOH0.2_1353Q56J41417-9042026-03-19T01:44:08-03:00';
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://pkvlnhfzhjjsblotzoxn.supabase.co';
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBrdmxuaGZ6aGpqc2Jsb3R6b3huIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxNzA5MzIsImV4cCI6MjEwNDc0NjkzMn0.4AIRBHEd_mL9mWl96fGI3bRBPV7176rjVzKSClALfhE';
 
 // Criando o cliente apenas se tiver as chaves
 export const supabase = supabaseUrl && supabaseKey

@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
-import Image from 'next/image';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -37,29 +36,33 @@ const Header = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-black/10 backdrop-blur-xl border-b border-white/5 py-4 shadow-lg' : 'bg-transparent py-6'
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-concept-blue border-b border-white/15 py-4' : 'bg-transparent py-6'
                 }`}
             role="navigation"
             aria-label="Main Navigation"
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
-                {/* Logo */}
+                {/* Logo with dynamic minimalist design line */}
                 <div
-                    className="w-16 md:w-20 cursor-pointer relative h-10 md:h-12"
+                    className="flex items-center gap-3 cursor-pointer"
                     onClick={() => scrollToSection('hero')}
                     role="button"
                     aria-label="Go to Homepage"
                     tabIndex={0}
                     onKeyDown={(e) => e.key === 'Enter' && scrollToSection('hero')}
                 >
-                    <Image
-                        src="/logo-concept2.png"
-                        alt="Concept Digital Logo"
-                        fill
-                        className="object-contain"
-                        priority
-                        sizes="(max-width: 768px) 64px, 80px"
-                    />
+                    <div className="relative w-10 h-10 flex items-center justify-center border border-white/20">
+                        {/* Dynamic minimalist geometric Lobo footprint logo outline */}
+                        <svg className="w-6 h-6 text-concept-yellow animate-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                            <path d="M12 2L9 9H15L12 2Z" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M6 13C6 11.5 8 9.5 9 9" strokeLinecap="round"/>
+                            <path d="M18 13C18 11.5 16 9.5 15 9" strokeLinecap="round"/>
+                            <path d="M12 17C10.5 17 9.5 15.5 9.5 14C9.5 12.5 10.5 12 12 12C13.5 12 14.5 12.5 14.5 14C14.5 15.5 13.5 17 12 17Z" strokeLinecap="round"/>
+                        </svg>
+                    </div>
+                    <span className="text-white font-montserrat font-bold text-sm tracking-[0.25em] uppercase hidden sm:inline-block">
+                        Concept<span className="text-concept-yellow">.</span>
+                    </span>
                 </div>
 
                 {/* Desktop Menu */}
@@ -68,7 +71,7 @@ const Header = () => {
                         <button
                             key={item}
                             onClick={() => scrollToSection(item === 'home' ? 'hero' : item)}
-                            className="text-white hover:text-digital-primary text-sm font-bold uppercase tracking-widest transition-colors"
+                            className="text-concept-white hover:text-concept-yellow text-xs font-bold uppercase tracking-widest transition-colors font-poppins"
                         >
                             {item === 'home' ? 'Início' : item === 'method' ? 'Método' : item === 'portfolio' ? 'Projetos' : 'Contato'}
                         </button>
@@ -80,7 +83,7 @@ const Header = () => {
                             });
                             scrollToSection('contact');
                         }}
-                        className="px-6 py-2 border border-digital-primary text-digital-primary hover:bg-digital-primary hover:text-digital-black transition-all rounded-full text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(197,160,89,0.2)] hover:shadow-[0_0_25px_rgba(197,160,89,0.5)]"
+                        className="px-6 py-2.5 border-[1.5px] border-concept-yellow text-concept-yellow hover:bg-concept-yellow hover:text-concept-blue transition-all rounded-none text-xs font-bold uppercase tracking-widest"
                         aria-label="Entre em Contato"
                     >
                         Fale Conosco
@@ -89,7 +92,7 @@ const Header = () => {
 
                 {/* Mobile Menu Button */}
                 <button
-                    className="md:hidden text-white"
+                    className="md:hidden text-white p-2 hover:text-concept-yellow transition-colors"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label={isMobileMenuOpen ? "Fechar Menu" : "Abrir Menu"}
                     aria-expanded={isMobileMenuOpen}
@@ -100,16 +103,22 @@ const Header = () => {
 
             {/* Mobile Menu Overlay */}
             {isMobileMenuOpen && (
-                <div className="absolute top-full left-0 w-full bg-digital-blue-dark/95 backdrop-blur-xl border-b border-white/10 p-8 flex flex-col gap-6 md:hidden animate-fade-in-down">
+                <div className="absolute top-full left-0 w-full bg-concept-blue border-b border-white/10 p-8 flex flex-col gap-6 md:hidden">
                     {['home', 'method', 'portfolio', 'contact'].map((item) => (
                         <button
                             key={item}
                             onClick={() => scrollToSection(item === 'home' ? 'hero' : item)}
-                            className="text-white hover:text-digital-gold text-lg font-bold uppercase tracking-widest text-left"
+                            className="text-concept-white hover:text-concept-yellow text-sm font-bold uppercase tracking-widest text-left font-poppins"
                         >
                             {item === 'home' ? 'Início' : item === 'method' ? 'Método' : item === 'portfolio' ? 'Projetos' : 'Contato'}
                         </button>
                     ))}
+                    <button
+                        onClick={() => scrollToSection('contact')}
+                        className="w-full text-center py-3 border-[1.5px] border-concept-yellow text-concept-yellow hover:bg-concept-yellow hover:text-concept-blue transition-all rounded-none text-xs font-bold uppercase tracking-widest"
+                    >
+                        Fale Conosco
+                    </button>
                 </div>
             )}
         </nav>

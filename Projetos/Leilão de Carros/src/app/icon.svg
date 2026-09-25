@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <rect width="32" height="32" rx="8" fill="#0C0C0D" />
+  <rect x="1" y="1" width="30" height="30" rx="7" fill="none" stroke="#FFB800" stroke-width="1.5" stroke-opacity="0.4" />
+  <!-- Gavel Icon in Automotive Gold -->
+  <path d="M14 6l4 4-8 8-4-4 8-8z" fill="#FFB800" />
+  <path d="M17 9l7-7 2 2-7 7-2-2z" fill="#FFE066" />
+  <path d="M9 19l4 4-2 2-4-4 2-2z" fill="#CA8A04" />
+  <path d="M19 15l7 7-2 2-7-7 2-2z" stroke="#FFB800" stroke-width="2" stroke-linecap="round" fill="none" />
+</svg>
