@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { projects, projectFilters } from '@/data/projects';
+import { projects, projectFilters } from '@/data/portfolio';
 import { Project, ProjectCategory } from '@/types/project';
 import { whatsappLink } from '@/lib/whatsapp';
 import Wolf from './Wolf';

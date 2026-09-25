@@ -1,6 +1,6 @@
 import Wolf from './Wolf';
 import WhatsAppLink, { WhatsAppIcon } from './WhatsAppLink';
-import { projects, nicheCount } from '@/data/projects';
+import { projects, nicheCount } from '@/data/portfolio';
 import { WHATSAPP_DISPLAY } from '@/lib/whatsapp';
 
 const Corner = ({ tone = 'ink' }: { tone?: 'ink' | 'light' }) => (
