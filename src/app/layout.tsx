@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "../components/Header";
+import { SiteHeader, SiteFooter, WhatsAppFloat } from "../components/home/SiteChrome";
 import { Suspense } from "react";
 import PixelTracker from "../components/PixelTracker";
 import CookieConsent from "../components/CookieConsent";
@@ -19,8 +19,8 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://concept-digital-portfolio.vercel.app"),
-    title: "Concept Digital | Desenvolvimento Web de Alta Performance",
-    description: "Transformamos sua presença digital com sites de alta conversão, design premium e estratégias de SEO avançadas. Especialistas em Landing Pages e E-commerce.",
+    title: "Concept Digital | Portfólio de Landing Pages, CRMs e Sistemas",
+    description: "Engenharia de vendas e design para negócios premium na Baixada Santista. Landing pages de alta conversão, CRM próprio, e-commerce e sistemas sob medida.",
     keywords: ["desenvolvimento web", "sites de alta conversão", "SEO", "landing pages", "e-commerce", "design premium", "next.js", "react"],
     openGraph: {
         title: "Concept Digital | Desenvolvimento Web de Alta Performance",
@@ -53,18 +53,13 @@ export default function RootLayout({
                     <AnalyticsTracker />
                 </Suspense>
                 <CookieConsent />
-                <Suspense fallback={<nav className="py-6" />}>
-                    <Header />
-                </Suspense>
+                <SiteHeader />
                 <main className="min-h-screen relative overflow-x-hidden">
                     {children}
                 </main>
+                <SiteFooter />
+                <WhatsAppFloat />
                 <SpeedInsights />
-
-                {/* Simple Footer */}
-                <footer className="py-8 text-center text-digital-primary text-xs uppercase tracking-widest border-t border-white/5 bg-[#020408]">
-                    &copy; {new Date().getFullYear()} Concept Digital. Todos os Direitos Reservados.
-                </footer>
             </body>
         </html>
     );

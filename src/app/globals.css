@@ -4,7 +4,7 @@
 
 @layer base {
     body {
-        @apply bg-concept-blue text-concept-white font-poppins font-light min-h-[100dvh] overflow-x-hidden;
+        @apply bg-concept-ground text-concept-ink font-inter font-normal min-h-[100dvh] overflow-x-hidden;
     }
 
     html {
@@ -75,4 +75,46 @@
         linear-gradient(to right, rgba(255, 255, 255, 0.04) 0.5px, transparent 0.5px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 0.5px, transparent 0.5px);
     background-size: 60px 60px;
+}
+/* ---------- Lobo-guará animado (home) ---------- */
+.wolf path {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.wolf.wolf-ink path { stroke: #0624C7; }
+.wolf path.wolf-acc { stroke: #FCE026; }
+
+.wolf-draw {
+    stroke-dasharray: 1200;
+    stroke-dashoffset: 1200;
+    animation: wolf-draw 9s ease-in-out infinite both;
+}
+.wolf-d2 { animation-delay: .25s; }
+.wolf-d3 { animation-delay: .5s; }
+.wolf-d4 { animation-delay: .75s; }
+.wolf-d5 { animation-delay: 1s; }
+
+@keyframes wolf-draw {
+    0% { stroke-dashoffset: 1200; }
+    32% { stroke-dashoffset: 0; }
+    84% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -1200; }
+}
+
+.wolf-float { animation: wolf-float 4.5s ease-in-out infinite; }
+@keyframes wolf-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.spin { animation: concept-spin 22s linear infinite; transform-origin: 50% 50%; transform-box: fill-box; }
+.orbit { animation: concept-spin 14s linear infinite; transform-origin: 50% 50%; transform-box: fill-box; }
+svg.spin, svg.orbit { transform-box: border-box; }
+@keyframes concept-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+    .wolf-draw, .wolf-float, .spin, .orbit { animation: none; stroke-dashoffset: 0; }
 }

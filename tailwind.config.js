@@ -16,6 +16,13 @@ export default {
                 'concept-yellow': '#FCE026',
                 'concept-gray': '#F8FAFC',
                 'concept-darkblue': '#041885',
+                'concept-ink': '#0B1030',
+                'concept-muted': '#4A5070',
+                'concept-line': '#E1E4EE',
+                'concept-ground': '#F3F4F8',
+                'concept-tint': '#DCE3FF',
+                'concept-soft': '#EEF1FA',
+                'whatsapp': '#25D366',
             },
             fontFamily: {
                 montserrat: ['var(--font-montserrat)', 'sans-serif'],
