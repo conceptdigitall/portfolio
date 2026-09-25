@@ -16,10 +16,13 @@ export function formatCompactBRL(amount: number): string {
   return formatBRL(amount);
 }
 
-export function formatDiscountVsFipe(currentBid: number, fipeValue: number): number {
-  if (!fipeValue || fipeValue <= currentBid) return 0;
-  return Math.round(((fipeValue - currentBid) / fipeValue) * 100);
+export function formatDiscountVsRetail(currentBid: number, retailValue: number): number {
+  if (!retailValue || retailValue <= currentBid) return 0;
+  return Math.round(((retailValue - currentBid) / retailValue) * 100);
 }
+
+// Backward compatibility alias
+export const formatDiscountVsFipe = formatDiscountVsRetail;
 
 export interface RemainingTime {
   days: number;

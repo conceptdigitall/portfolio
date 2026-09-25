@@ -7,10 +7,7 @@ import { useParams } from "next/navigation";
 import {
   Gavel,
   ShieldCheck,
-  Calendar,
   Gauge,
-  MapPin,
-  TrendingUp,
   FileText,
   AlertTriangle,
   CheckCircle2,
@@ -18,12 +15,12 @@ import {
   ArrowLeft,
   Share2,
   ZoomIn,
-  Clock,
-  Sparkles,
   HelpCircle,
-  Car,
   Wrench,
   Check,
+  BatteryCharging,
+  Zap,
+  Bike,
 } from "lucide-react";
 import { useAuction } from "@/context/AuctionContext";
 import { CountdownBadge } from "@/components/CountdownBadge";
@@ -31,7 +28,7 @@ import { LaudoModal } from "@/components/LaudoModal";
 import { AUCTION_FAQ } from "@/data/mockLots";
 import {
   formatBRL,
-  formatDiscountVsFipe,
+  formatDiscountVsRetail,
   formatRelativeTime,
 } from "@/utils/formatters";
 
@@ -53,7 +50,7 @@ export default function LotDetailPage() {
   if (!lot) {
     return (
       <div className="py-20 text-center space-y-4">
-        <h2 className="text-2xl font-bold text-white">Lote não encontrado</h2>
+        <h2 className="text-2xl font-bold text-white">Lote de e-bike não encontrado</h2>
         <p className="text-neutral-400 text-sm">
           O lote solicitado não existe ou já foi finalizado.
         </p>
@@ -68,7 +65,7 @@ export default function LotDetailPage() {
     );
   }
 
-  const discount = formatDiscountVsFipe(lot.currentBid, lot.fipeValue);
+  const discount = formatDiscountVsRetail(lot.currentBid, lot.retailValue);
   const nextMinBid = lot.currentBid + lot.minIncrement;
 
   const handleIncrementBid = (increment: number) => {
@@ -103,7 +100,7 @@ export default function LotDetailPage() {
         <div className="flex items-center gap-2 text-xs sm:text-sm text-neutral-400">
           <Link href="/" className="hover:text-gold-400 flex items-center gap-1.5 transition-colors">
             <ArrowLeft className="w-4 h-4" />
-            <span>Vitrine de Lotes</span>
+            <span>Vitrine de E-Bikes</span>
           </Link>
           <span>/</span>
           <span className="text-neutral-500">{lot.category}</span>
@@ -127,7 +124,7 @@ export default function LotDetailPage() {
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gold-500/15 border border-gold-500/40 text-gold-400 hover:bg-gold-500/25 text-xs font-bold transition-all shadow-sm"
           >
             <FileText className="w-3.5 h-3.5" />
-            <span>Edital & Laudo Pericial</span>
+            <span>Edital & Laudo da Bateria</span>
           </button>
         </div>
       </div>
@@ -168,7 +165,7 @@ export default function LotDetailPage() {
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-neutral-300 backdrop-blur-md bg-dark-950/70 p-3 rounded-2xl border border-neutral-800/80">
               <span className="flex items-center gap-1.5 font-medium">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                Fotografia Oficial Pericial de Entrada no Pátio
+                Fotografia Oficial de Entrada no Pátio
               </span>
               <span className="text-neutral-400">{lot.patio}</span>
             </div>
@@ -196,18 +193,18 @@ export default function LotDetailPage() {
             ))}
           </div>
 
-          {/* Inspection & Safety Quick Banner */}
+          {/* E-Bike Inspection & Battery Telemetry Banner */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 rounded-2xl bg-dark-900 border border-neutral-800 text-xs">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0">
-                <ShieldCheck className="w-6 h-6" />
+                <BatteryCharging className="w-6 h-6" />
               </div>
               <div>
                 <span className="font-bold text-white block">
-                  Laudo Cautelar {lot.inspection.resultadoGeral} ({lot.inspection.pontuacaoGeral}/100)
+                  Laudo Técnico {lot.inspection.resultadoGeral} • Bateria {lot.specs.saudeBateriaSoH}% SoH ({lot.specs.ciclosCarga} ciclos)
                 </span>
                 <span className="text-neutral-400">
-                  {lot.inspection.estruturaStatus} • Pintura média {lot.inspection.espessuraPinturaMediaMicrons} µm
+                  {lot.specs.motor} ({lot.specs.torque}) • Ultrassom do quadro 100% íntegro
                 </span>
               </div>
             </div>
@@ -234,7 +231,7 @@ export default function LotDetailPage() {
               </span>
               {discount > 0 && (
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-700 text-emerald-300 text-xs font-bold">
-                  -{discount}% FIPE
+                  -{discount}% Nova
                 </span>
               )}
             </div>
@@ -255,13 +252,13 @@ export default function LotDetailPage() {
             {/* Price Row */}
             <div className="space-y-3 pb-4 border-b border-neutral-800">
               <div className="flex items-center justify-between text-xs text-neutral-400">
-                <span>Avaliação Tabela FIPE:</span>
+                <span>Preço de Nova no Mercado:</span>
                 <span className="font-mono text-neutral-300 line-through">
-                  {formatBRL(lot.fipeValue)}
+                  {formatBRL(lot.retailValue)}
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs text-neutral-400">
-                <span>Lance Inicial de Pregão:</span>
+                <span>Lance Inicial do Edital:</span>
                 <span className="font-mono text-neutral-300">
                   {formatBRL(lot.initialBid)}
                 </span>
@@ -288,7 +285,7 @@ export default function LotDetailPage() {
               </div>
             </div>
 
-            {/* Quick Increment Buttons (+ R$ 500, + R$ 1.000, etc.) */}
+            {/* Quick Increment Buttons */}
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-neutral-400 font-medium">
@@ -363,7 +360,7 @@ export default function LotDetailPage() {
             </div>
           </div>
 
-          {/* Live Bidding History Feed (Social Proof) */}
+          {/* Live Bidding History Feed */}
           <div className="bg-dark-900 border border-neutral-800 rounded-3xl p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-neutral-800 pb-3">
               <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-300 flex items-center gap-2">
@@ -420,64 +417,84 @@ export default function LotDetailPage() {
         </div>
       </div>
 
-      {/* Technical Specifications Section */}
+      {/* Technical Specifications Section for E-Bikes */}
       <section className="bg-dark-900 border border-neutral-800 rounded-3xl p-6 sm:p-8 space-y-6">
         <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-gold-400">
-          <Car className="w-4 h-4" />
-          <span>Ficha Técnica do Veículo</span>
+          <Bike className="w-4 h-4" />
+          <span>Ficha Técnica da E-Bike</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-display font-bold text-white">
-          Especificações de Fábrica & Documentação
+          Especificações do Motor, Bateria & Componentes
         </h2>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-xs">
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">Motorização</span>
+            <span className="text-neutral-500 block text-[11px]">Motor Elétrico</span>
             <span className="font-semibold text-white text-sm">{lot.specs.motor}</span>
           </div>
 
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">Potência</span>
-            <span className="font-semibold text-white text-sm">{lot.specs.potencia}</span>
+            <span className="text-neutral-500 block text-[11px]">Torque Nominal</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.torque}</span>
+          </div>
+
+          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
+            <span className="text-neutral-500 block text-[11px]">Capacidade da Bateria</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.bateriaCapacidade}</span>
+          </div>
+
+          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
+            <span className="text-neutral-500 block text-[11px]">Saúde da Bateria (SoH)</span>
+            <span className="font-semibold text-emerald-400 text-sm">{lot.specs.saudeBateriaSoH}% ({lot.specs.ciclosCarga} ciclos)</span>
+          </div>
+
+          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
+            <span className="text-neutral-500 block text-[11px]">Autonomia Estimada</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.autonomiaEstimadaKm}</span>
+          </div>
+
+          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
+            <span className="text-neutral-500 block text-[11px]">Quadro & Geometria</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.quadro}</span>
+          </div>
+
+          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
+            <span className="text-neutral-500 block text-[11px]">Tamanho do Quadro</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.tamanhoQuadro}</span>
           </div>
 
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
             <span className="text-neutral-500 block text-[11px]">Transmissão</span>
-            <span className="font-semibold text-white text-sm">{lot.specs.cambio}</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.transmissao}</span>
           </div>
 
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">Tração</span>
-            <span className="font-semibold text-white text-sm">{lot.specs.tracao}</span>
+            <span className="text-neutral-500 block text-[11px]">Sistema de Freios</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.freios}</span>
           </div>
 
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">Combustível</span>
-            <span className="font-semibold text-white text-sm">{lot.specs.combustivel}</span>
+            <span className="text-neutral-500 block text-[11px]">Suspensão</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.suspensao}</span>
           </div>
 
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">Cor Externa</span>
-            <span className="font-semibold text-white text-sm">{lot.specs.cor}</span>
+            <span className="text-neutral-500 block text-[11px]">Peso Total</span>
+            <span className="font-semibold text-white text-sm">{lot.specs.pesoKg}</span>
           </div>
 
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">Final da Placa</span>
-            <span className="font-mono font-semibold text-white text-sm">Final {lot.specs.finalPlaca}</span>
-          </div>
-
-          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">Número do Chassi</span>
-            <span className="font-mono font-semibold text-white text-sm">{lot.specs.chassi}</span>
-          </div>
-
-          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800">
-            <span className="text-neutral-500 block text-[11px]">IPVA 2026</span>
-            <span className="font-semibold text-emerald-400 text-sm">{lot.specs.ipva}</span>
+            <span className="text-neutral-500 block text-[11px]">Odômetro Aferido</span>
+            <span className="font-mono font-semibold text-white text-sm">{lot.odometerKm} KM</span>
           </div>
 
           <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800 col-span-2">
-            <span className="text-neutral-500 block text-[11px]">Situação Documental (DUT / ATPV-e)</span>
+            <span className="text-neutral-500 block text-[11px]">Carregador & Acessórios Inclusos</span>
+            <span className="font-semibold text-emerald-400 text-sm">{lot.specs.carregadorIncluso}</span>
+          </div>
+
+          <div className="bg-dark-850 p-4 rounded-xl border border-neutral-800 col-span-2">
+            <span className="text-neutral-500 block text-[11px]">Documentação & Procedência</span>
             <span className="font-semibold text-white text-sm">{lot.specs.documentacao}</span>
           </div>
         </div>
@@ -489,10 +506,10 @@ export default function LotDetailPage() {
           <div>
             <div className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-wider text-gold-400">
               <Wrench className="w-4 h-4" />
-              <span>Vistoria & Checklist de Avarias</span>
+              <span>Vistoria & Checklist Pericial</span>
             </div>
             <h2 className="text-xl sm:text-2xl font-display font-bold text-white mt-1">
-              Apontamentos Físicos & Mecânicos do Lote
+              Apontamentos Físicos & Mecânicos da E-Bike
             </h2>
           </div>
 
@@ -556,7 +573,7 @@ export default function LotDetailPage() {
           <span>Dúvidas Frequentes</span>
         </div>
         <h2 className="text-xl sm:text-2xl font-display font-bold text-white">
-          Retirada, Documentação & Procedimentos de Pagamento
+          Bateria, Retirada, Envio & Procedimentos de Arrematação
         </h2>
 
         <div className="space-y-3">

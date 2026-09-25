@@ -8,16 +8,17 @@ import {
   ShieldCheck,
   TrendingUp,
   MapPin,
-  Calendar,
   Gauge,
   ArrowUpRight,
   Sparkles,
   ChevronRight,
+  BatteryCharging,
+  Zap,
 } from "lucide-react";
 import { Lot } from "@/types/auction";
 import { CountdownBadge } from "./CountdownBadge";
 import { useAuction } from "@/context/AuctionContext";
-import { formatBRL, formatDiscountVsFipe } from "@/utils/formatters";
+import { formatBRL, formatDiscountVsRetail } from "@/utils/formatters";
 
 interface HeroProps {
   lot: Lot;
@@ -27,7 +28,7 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
   const { placeBid } = useAuction();
   const [isBidding, setIsBidding] = useState(false);
 
-  const discount = formatDiscountVsFipe(lot.currentBid, lot.fipeValue);
+  const discount = formatDiscountVsRetail(lot.currentBid, lot.retailValue);
   const nextMinBid = lot.currentBid + lot.minIncrement;
 
   const handleQuickBid = () => {
@@ -43,7 +44,7 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
       <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-neutral-800/30 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 p-6 sm:p-8 lg:p-10 relative z-10 items-center">
-        {/* Left Side: Editorial & Car Presentation */}
+        {/* Left Side: Editorial & E-Bike Presentation */}
         <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
           {/* Header Badges */}
           <div className="flex flex-wrap items-center gap-2.5">
@@ -52,13 +53,13 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
               LOTE EM DESTAQUE #{lot.numeroLote}
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-neutral-800/80 border border-neutral-700/60 text-neutral-300 text-xs font-medium">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              Laudo Pericial 98% Aprovado
+              <BatteryCharging className="w-3.5 h-3.5 text-emerald-400" />
+              Bateria {lot.specs.saudeBateriaSoH}% SoH • {lot.specs.ciclosCarga} Ciclos
             </span>
             {discount > 0 && (
               <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 text-xs font-bold">
                 <TrendingUp className="w-3 h-3" />
-                {discount}% abaixo da FIPE
+                {discount}% abaixo de uma nova
               </span>
             )}
           </div>
@@ -73,42 +74,42 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
             </p>
           </div>
 
-          {/* Technical Fast Specs Chips */}
+          {/* Technical Fast Specs Chips for E-Bikes */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 py-2">
+            <div className="flex items-center gap-2 bg-dark-850/80 border border-neutral-800/80 rounded-xl px-3 py-2 text-xs text-neutral-300">
+              <BatteryCharging className="w-4 h-4 text-emerald-400 shrink-0" />
+              <div>
+                <span className="block text-[10px] text-neutral-500 uppercase">Bateria & Saúde</span>
+                <span className="font-semibold text-white">{lot.specs.bateriaCapacidade} ({lot.specs.saudeBateriaSoH}%)</span>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 bg-dark-850/80 border border-neutral-800/80 rounded-xl px-3 py-2 text-xs text-neutral-300">
+              <Zap className="w-4 h-4 text-gold-500 shrink-0" />
+              <div>
+                <span className="block text-[10px] text-neutral-500 uppercase">Motor & Torque</span>
+                <span className="font-semibold text-white">{lot.specs.torque}</span>
+              </div>
+            </div>
+
             <div className="flex items-center gap-2 bg-dark-850/80 border border-neutral-800/80 rounded-xl px-3 py-2 text-xs text-neutral-300">
               <Gauge className="w-4 h-4 text-gold-500 shrink-0" />
               <div>
-                <span className="block text-[10px] text-neutral-500 uppercase">Quilometragem</span>
-                <span className="font-semibold text-white">{lot.mileageKm.toLocaleString("pt-BR")} KM</span>
+                <span className="block text-[10px] text-neutral-500 uppercase">Odômetro</span>
+                <span className="font-semibold text-white">{lot.odometerKm} KM rodados</span>
               </div>
             </div>
 
             <div className="flex items-center gap-2 bg-dark-850/80 border border-neutral-800/80 rounded-xl px-3 py-2 text-xs text-neutral-300">
-              <Calendar className="w-4 h-4 text-gold-500 shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
               <div>
-                <span className="block text-[10px] text-neutral-500 uppercase">Ano / Modelo</span>
-                <span className="font-semibold text-white">{lot.year}/{lot.modelYear}</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 bg-dark-850/80 border border-neutral-800/80 rounded-xl px-3 py-2 text-xs text-neutral-300">
-              <MapPin className="w-4 h-4 text-gold-500 shrink-0" />
-              <div>
-                <span className="block text-[10px] text-neutral-500 uppercase">Localização</span>
-                <span className="font-semibold text-white">{lot.city}, {lot.state}</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-2 bg-dark-850/80 border border-neutral-800/80 rounded-xl px-3 py-2 text-xs text-neutral-300">
-              <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
-              <div>
-                <span className="block text-[10px] text-neutral-500 uppercase">Categoria</span>
-                <span className="font-semibold text-white truncate">{lot.category}</span>
+                <span className="block text-[10px] text-neutral-500 uppercase">Quadro / Tamanho</span>
+                <span className="font-semibold text-white truncate">{lot.specs.tamanhoQuadro}</span>
               </div>
             </div>
           </div>
 
-          {/* Featured Car Image Presentation */}
+          {/* Featured E-Bike Image Presentation */}
           <div className="relative w-full h-56 sm:h-72 lg:h-80 rounded-2xl overflow-hidden border border-neutral-800 group">
             <Image
               src={lot.images[0]}
@@ -119,12 +120,12 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/20 to-transparent"></div>
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs text-neutral-300 backdrop-blur-md bg-dark-950/60 p-2.5 rounded-xl border border-neutral-800/80">
-              <span className="font-medium">Pátio Barueri • Visitação Presencial Liberada</span>
+              <span className="font-medium">Pátio Central Barueri • Carregador Original 4A + Chaves Inclusos</span>
               <Link
                 href={`/lote/${lot.id}`}
                 className="text-gold-400 hover:text-gold-300 font-semibold flex items-center gap-1"
               >
-                <span>Ver 24 fotos do laudo</span>
+                <span>Ver laudo de bateria & fotos</span>
                 <ChevronRight className="w-3.5 h-3.5" />
               </Link>
             </div>
@@ -133,7 +134,7 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
 
         {/* Right Side: Interactive Bidding Console & Countdown */}
         <div className="lg:col-span-5 bg-dark-850 border border-neutral-800 rounded-2xl p-6 sm:p-7 shadow-xl flex flex-col justify-between space-y-6">
-          {/* Real-Time Countdown Module (DriveBay Inspiration) */}
+          {/* Real-Time Countdown Module */}
           <div className="border-b border-neutral-800 pb-5">
             <CountdownBadge endDateIso={lot.endDate} variant="hero-blocks" status={lot.status} />
           </div>
@@ -141,9 +142,9 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
           {/* Price & Bids Status */}
           <div className="space-y-4">
             <div className="flex items-center justify-between text-xs text-neutral-400">
-              <span>Valor Tabela FIPE:</span>
+              <span>Preço Médio de Nova no Mercado:</span>
               <span className="font-mono text-neutral-300 line-through">
-                {formatBRL(lot.fipeValue)}
+                {formatBRL(lot.retailValue)}
               </span>
             </div>
 
@@ -177,7 +178,7 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
             </div>
           </div>
 
-          {/* Quick Increment Controls (Simulation Button) */}
+          {/* Quick Increment Controls */}
           <div className="space-y-3">
             <div className="flex items-center justify-between text-xs text-neutral-400">
               <span>Próximo lance mínimo:</span>
@@ -189,23 +190,23 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => {
-                  placeBid(lot.id, lot.currentBid + 10000, "Você (Apresentador)", true);
+                  placeBid(lot.id, lot.currentBid + 1000, "Você (Apresentador)", true);
                 }}
                 className="py-2.5 px-3 rounded-xl bg-dark-900 border border-neutral-700 hover:border-gold-500 text-xs font-semibold text-neutral-200 hover:text-white transition-all"
               >
-                + R$ 10.000
+                + R$ 1.000
               </button>
               <button
                 onClick={() => {
-                  placeBid(lot.id, lot.currentBid + 25000, "Você (Apresentador)", true);
+                  placeBid(lot.id, lot.currentBid + 2500, "Você (Apresentador)", true);
                 }}
                 className="py-2.5 px-3 rounded-xl bg-dark-900 border border-neutral-700 hover:border-gold-500 text-xs font-semibold text-neutral-200 hover:text-white transition-all"
               >
-                + R$ 25.000
+                + R$ 2.500
               </button>
             </div>
 
-            {/* Main Action Button - Identical to "Post Bid" from DriveBay */}
+            {/* Main Action Button */}
             <button
               onClick={handleQuickBid}
               disabled={isBidding}
@@ -224,7 +225,7 @@ export function HeroFeaturedLot({ lot }: HeroProps) {
               href={`/lote/${lot.id}`}
               className="w-full py-3 rounded-xl bg-dark-900 hover:bg-neutral-800 border border-neutral-700 text-xs font-semibold text-neutral-300 hover:text-white flex items-center justify-center gap-1.5 transition-colors"
             >
-              <span>Acessar Arena Completa do Lote & Laudo</span>
+              <span>Acessar Arena Completa da E-Bike & Laudo</span>
               <ArrowUpRight className="w-4 h-4 text-gold-400" />
             </Link>
           </div>

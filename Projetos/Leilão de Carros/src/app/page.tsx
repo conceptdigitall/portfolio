@@ -2,15 +2,14 @@
 
 import React, { useState, useMemo } from "react";
 import {
-  Filter,
-  Flame,
   ShieldCheck,
   TrendingDown,
   Award,
   Layers,
-  Sparkles,
   ArrowUpDown,
   Search,
+  BatteryCharging,
+  Zap,
 } from "lucide-react";
 import { useAuction } from "@/context/AuctionContext";
 import { HeroFeaturedLot } from "@/components/HeroFeaturedLot";
@@ -31,10 +30,10 @@ export default function HomePage() {
 
   const categories = [
     "Todas",
-    "Recuperados de Financiamento",
-    "Sinistro Médio",
-    "Frotas Corporativas",
-    "Superesportivos & Luxo",
+    "Superbikes de Carbono",
+    "e-MTB Performance",
+    "Urbanas & Commuter",
+    "Frotas & Delivery",
   ];
 
   // Filter lots based on category, city, and search query
@@ -76,8 +75,8 @@ export default function HomePage() {
         return timeA - timeB;
       }
       if (sortBy === "desconto") {
-        const discA = ((a.fipeValue - a.currentBid) / a.fipeValue);
-        const discB = ((b.fipeValue - b.currentBid) / b.fipeValue);
+        const discA = ((a.retailValue - a.currentBid) / a.retailValue);
+        const discB = ((b.retailValue - b.currentBid) / b.retailValue);
         return discB - discA;
       }
       if (sortBy === "menor-lance") {
@@ -94,20 +93,20 @@ export default function HomePage() {
 
   return (
     <div className="space-y-10">
-      {/* Featured Lot Hero (DriveBay Inspiration) */}
+      {/* Featured E-Bike Hero */}
       {featuredLot && !searchQuery && selectedCategory === "Todas" && (
         <HeroFeaturedLot lot={featuredLot} />
       )}
 
-      {/* Institutional Highlights Banner */}
+      {/* Institutional Highlights Banner for E-Bikes */}
       <section className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-dark-900 border border-neutral-800">
           <div className="p-2.5 rounded-xl bg-gold-500/10 text-gold-400">
-            <ShieldCheck className="w-5 h-5" />
+            <BatteryCharging className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
-            <div className="text-xs sm:text-sm font-bold text-white">Laudo Cautelar 100%</div>
-            <div className="text-[11px] text-neutral-400">Inspeção pericial DEKRA</div>
+            <div className="text-xs sm:text-sm font-bold text-white">Baterias Auditadas</div>
+            <div className="text-[11px] text-neutral-400">Teste oficial de SoH e Ciclos</div>
           </div>
         </div>
 
@@ -116,27 +115,27 @@ export default function HomePage() {
             <TrendingDown className="w-5 h-5" />
           </div>
           <div>
-            <div className="text-xs sm:text-sm font-bold text-white">Até 45% Abaixo FIPE</div>
-            <div className="text-[11px] text-neutral-400">Margem real de repasse</div>
+            <div className="text-xs sm:text-sm font-bold text-white">Até 48% Abaixo de Nova</div>
+            <div className="text-[11px] text-neutral-400">Marcas premium com procedência</div>
           </div>
         </div>
 
         <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-dark-900 border border-neutral-800">
           <div className="p-2.5 rounded-xl bg-sky-500/10 text-sky-400">
-            <Award className="w-5 h-5" />
+            <ShieldCheck className="w-5 h-5 text-sky-400" />
           </div>
           <div>
-            <div className="text-xs sm:text-sm font-bold text-white">Bancos & Frotistas</div>
-            <div className="text-[11px] text-neutral-400">Origem 100% rastreada</div>
+            <div className="text-xs sm:text-sm font-bold text-white">Ultrassom de Quadro</div>
+            <div className="text-[11px] text-neutral-400">Carbono e soldas 100% íntegros</div>
           </div>
         </div>
 
         <div className="flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-dark-900 border border-neutral-800">
           <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400">
-            <Flame className="w-5 h-5" />
+            <Zap className="w-5 h-5 text-gold-400" />
           </div>
           <div>
-            <div className="text-xs sm:text-sm font-bold text-white">Pregão Ao Vivo</div>
+            <div className="text-xs sm:text-sm font-bold text-white">Pregão E-Bike Ao Vivo</div>
             <div className="text-[11px] text-neutral-400">Lances e disputa em tempo real</div>
           </div>
         </div>
@@ -148,13 +147,13 @@ export default function HomePage() {
           <div>
             <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-gold-400">
               <Layers className="w-4 h-4" />
-              <span>Vitrine de Lotes Disponíveis</span>
+              <span>Vitrine de Bikes Elétricas Disponíveis</span>
             </div>
             <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white mt-1">
               Lotes em Disputa Aberta
             </h2>
             <p className="text-xs sm:text-sm text-neutral-400 mt-1">
-              Veículos com documentação liberada, laudo cautelar pericial e cronômetro ativo para arrematação.
+              Bicicletas elétricas com carregador original incluso, laudo pericial de bateria e cronômetro regressivo ativo.
             </p>
           </div>
 
@@ -170,14 +169,14 @@ export default function HomePage() {
               className="bg-dark-900 border border-neutral-800 text-xs text-white rounded-xl px-3 py-2 focus:outline-none focus:border-gold-500 cursor-pointer"
             >
               <option value="urgencia">⏱️ Tempo Restante (Urgência)</option>
-              <option value="desconto">📉 Maior Desconto FIPE</option>
+              <option value="desconto">📉 Maior Desconto vs Nova</option>
               <option value="menor-lance">💲 Menor Lance Atual</option>
               <option value="maior-lance">💎 Maior Lance Atual</option>
             </select>
           </div>
         </div>
 
-        {/* Category Filter Pills (Responsive scroll) */}
+        {/* Category Filter Pills */}
         <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
           {categories.map((cat) => (
             <button
@@ -194,7 +193,7 @@ export default function HomePage() {
           ))}
         </div>
 
-        {/* Grid of Lot Cards */}
+        {/* Grid of E-Bike Lot Cards */}
         {sortedLots.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {sortedLots.map((lot) => (
@@ -204,9 +203,9 @@ export default function HomePage() {
         ) : (
           <div className="p-12 text-center bg-dark-900 border border-neutral-800 rounded-3xl space-y-3">
             <Search className="w-10 h-10 text-neutral-600 mx-auto" />
-            <h3 className="text-lg font-bold text-white">Nenhum lote encontrado</h3>
+            <h3 className="text-lg font-bold text-white">Nenhuma e-bike encontrada</h3>
             <p className="text-xs text-neutral-400 max-w-sm mx-auto">
-              Nenhum lote corresponde aos filtros selecionados. Tente buscar por outro termo ou limpe os filtros.
+              Nenhuma bicicleta elétrica corresponde aos filtros selecionados. Tente buscar por outro modelo ou limpe os filtros.
             </p>
             <button
               onClick={() => {

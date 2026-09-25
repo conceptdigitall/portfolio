@@ -7,16 +7,15 @@ import {
   Download,
   ShieldCheck,
   CheckCircle2,
-  AlertTriangle,
   QrCode,
   FileText,
-  Calendar,
   UserCheck,
-  Building,
   Check,
+  BatteryCharging,
+  Zap,
+  Bike,
 } from "lucide-react";
 import { Lot } from "@/types/auction";
-import { formatBRL } from "@/utils/formatters";
 
 interface LaudoModalProps {
   lot: Lot;
@@ -42,7 +41,7 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
             </div>
             <div>
               <h2 className="font-display font-bold text-base sm:text-lg text-white">
-                Laudo Cautelar Pericial & Edital Oficial
+                Laudo Técnico Pericial de E-Bike & Edital Oficial
               </h2>
               <p className="text-xs text-neutral-400">
                 Lote #{lot.numeroLote} • {lot.title} • Nº {lot.inspection.numeroLaudo}
@@ -68,7 +67,7 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
           </div>
         </div>
 
-        {/* Modal Scrollable Document Body (Styled as Official Forensic Inspection) */}
+        {/* Modal Scrollable Document Body */}
         <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 print:p-0 print:text-black">
           {/* Official Document Banner */}
           <div className="border-2 border-dashed border-neutral-700 rounded-xl p-5 bg-dark-950/60 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -81,10 +80,10 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
                   DOCUMENTO OFICIAL AUDITADO
                 </span>
                 <h3 className="text-lg font-bold text-white">
-                  CERTIFICADO DE CONFORMIDADE CAUTELAR
+                  CERTIFICADO DE CONFORMIDADE TÉCNICA DE E-BIKE
                 </h3>
                 <p className="text-xs text-neutral-400">
-                  Em conformidade com a Norma ABNT NBR 14653 e Resoluções CONTRAN
+                  Em conformidade com a Norma ABNT NBR ISO 4210, Resolução CONTRAN nº 996/2023 e Norma Europeia EN 15194
                 </p>
               </div>
             </div>
@@ -100,7 +99,7 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
                 </div>
               </div>
               <div className="border-l border-neutral-800 pl-3">
-                <div className="text-[10px] uppercase font-semibold text-neutral-400">Score</div>
+                <div className="text-[10px] uppercase font-semibold text-neutral-400">Score Geral</div>
                 <div className="text-xl font-mono font-bold text-gold-400">
                   {lot.inspection.pontuacaoGeral}/100
                 </div>
@@ -108,12 +107,12 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
             </div>
           </div>
 
-          {/* Technical Identification Grid */}
+          {/* Technical Identification Grid for E-Bikes */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="bg-dark-850 border border-neutral-800 rounded-xl p-4 space-y-2.5">
               <h4 className="text-xs font-bold uppercase tracking-wider text-gold-400 flex items-center gap-1.5">
-                <Building className="w-3.5 h-3.5" />
-                Dados do Veículo Inspecionado
+                <Bike className="w-3.5 h-3.5" />
+                Dados da Bicicleta Elétrica Inspecionada
               </h4>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
@@ -121,24 +120,28 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
                   <span className="font-semibold text-white">{lot.brand} {lot.model}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-500 block text-[11px]">Ano Fabricação/Modelo:</span>
+                  <span className="text-neutral-500 block text-[11px]">Ano / Modelo:</span>
                   <span className="font-semibold text-white">{lot.year}/{lot.modelYear}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-500 block text-[11px]">Número do Chassi:</span>
-                  <span className="font-mono font-semibold text-white">{lot.specs.chassi}</span>
+                  <span className="text-neutral-500 block text-[11px]">Quadro & Geometria:</span>
+                  <span className="font-semibold text-white">{lot.specs.quadro}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-500 block text-[11px]">Placa / UF:</span>
-                  <span className="font-mono font-semibold text-white">Final {lot.specs.finalPlaca} - {lot.state}</span>
+                  <span className="text-neutral-500 block text-[11px]">Tamanho do Quadro:</span>
+                  <span className="font-semibold text-white">{lot.specs.tamanhoQuadro}</span>
                 </div>
                 <div>
-                  <span className="text-neutral-500 block text-[11px]">Quilometragem Aferida:</span>
-                  <span className="font-semibold text-white">{lot.mileageKm.toLocaleString("pt-BR")} KM</span>
+                  <span className="text-neutral-500 block text-[11px]">Odômetro Aferido:</span>
+                  <span className="font-semibold text-white">{lot.odometerKm} KM rodados</span>
                 </div>
                 <div>
-                  <span className="text-neutral-500 block text-[11px]">Combustível:</span>
-                  <span className="font-semibold text-white">{lot.specs.combustivel}</span>
+                  <span className="text-neutral-500 block text-[11px]">Peso Total:</span>
+                  <span className="font-semibold text-white">{lot.specs.pesoKg}</span>
+                </div>
+                <div className="col-span-2 pt-1 border-t border-neutral-800">
+                  <span className="text-neutral-500 block text-[11px]">Carregador & Chaves:</span>
+                  <span className="font-semibold text-emerald-400">{lot.specs.carregadorIncluso}</span>
                 </div>
               </div>
             </div>
@@ -146,7 +149,7 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
             <div className="bg-dark-850 border border-neutral-800 rounded-xl p-4 space-y-2.5">
               <h4 className="text-xs font-bold uppercase tracking-wider text-gold-400 flex items-center gap-1.5">
                 <UserCheck className="w-3.5 h-3.5" />
-                Credenciamento & Autenticação
+                Credenciamento & Telemetria
               </h4>
               <div className="grid grid-cols-2 gap-2 text-xs">
                 <div>
@@ -166,74 +169,74 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
                   <span className="font-semibold text-white">{lot.patio}</span>
                 </div>
                 <div className="col-span-2 pt-1 flex items-center justify-between border-t border-neutral-800/80">
-                  <span className="text-[11px] text-neutral-400">Chave de Autenticação Digital:</span>
+                  <span className="text-[11px] text-neutral-400">Assinatura Digital Criptográfica:</span>
                   <span className="font-mono text-[10px] text-gold-400 bg-dark-900 px-2 py-0.5 rounded border border-neutral-700">
-                    SHA256: 7f8b92a1...49c0
+                    SHA256: 3a9e14c0...81b7
                   </span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Checklist de Itens Inspecionados (150 Itens) */}
+          {/* E-Bike Specific Inspection Highlights (Battery, Motor, Ultrasonic Frame) */}
           <div className="bg-dark-850 border border-neutral-800 rounded-xl p-5 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-gold-400 flex items-center justify-between">
-              <span>Auditoria Técnica Estrutural & Mecânica (150 Itens)</span>
+              <span>Auditoria Técnica do Sistema Elétrico & Estrutural</span>
               <span className="text-emerald-400 font-mono text-[11px]">● 100% Conforme</span>
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
               <div className="flex items-start gap-2 bg-dark-900/80 p-2.5 rounded-lg border border-neutral-800">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                <BatteryCharging className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-white block">Longarinas Dianteiras/Traseiras</span>
-                  <span className="text-[11px] text-neutral-400">Sem soldas, emendas ou deformações</span>
+                  <span className="font-semibold text-white block">Saúde da Bateria (SoH)</span>
+                  <span className="text-[11px] text-emerald-400 font-bold">{lot.specs.saudeBateriaSoH}% SoH • {lot.specs.ciclosCarga} ciclos</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2 bg-dark-900/80 p-2.5 rounded-lg border border-neutral-800">
+                <Zap className="w-4 h-4 text-gold-400 shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-semibold text-white block">Motor & Torque Nominal</span>
+                  <span className="text-[11px] text-neutral-300">{lot.specs.torque} ({lot.specs.motor})</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-2 bg-dark-900/80 p-2.5 rounded-lg border border-neutral-800">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-white block">Colunas A, B e C</span>
-                  <span className="text-[11px] text-neutral-400">Pontos de solda originais de fábrica</span>
+                  <span className="font-semibold text-white block">Varredura por Ultrassom do Quadro</span>
+                  <span className="text-[11px] text-neutral-400">{lot.inspection.testeUltrassomQuadro}</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-2 bg-dark-900/80 p-2.5 rounded-lg border border-neutral-800">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-white block">Painel Corta-Fogo & Assoalho</span>
-                  <span className="text-[11px] text-neutral-400">Alinhamento e vedação originais</span>
+                  <span className="font-semibold text-white block">Transmissão & Corrente</span>
+                  <span className="text-[11px] text-neutral-400">Desgaste &lt; 0.25% (Padrão de nova)</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-2 bg-dark-900/80 p-2.5 rounded-lg border border-neutral-800">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-white block">Espessura Média de Pintura</span>
-                  <span className="text-[11px] text-neutral-400">{lot.inspection.espessuraPinturaMediaMicrons} µm (Padrão Original Montadora)</span>
+                  <span className="font-semibold text-white block">Freios Hidráulicos</span>
+                  <span className="text-[11px] text-neutral-400">Pastilhas e discos 100% revisados</span>
                 </div>
               </div>
 
               <div className="flex items-start gap-2 bg-dark-900/80 p-2.5 rounded-lg border border-neutral-800">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <div>
-                  <span className="font-semibold text-white block">Etiquetas ETA & Gravações</span>
-                  <span className="text-[11px] text-neutral-400">Totalmente preservadas e legíveis</span>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-2 bg-dark-900/80 p-2.5 rounded-lg border border-neutral-800">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-semibold text-white block">Histórico de Sinistro</span>
-                  <span className="text-[11px] text-neutral-400">{lot.inspection.historicoSinistro}</span>
+                  <span className="font-semibold text-white block">Origem & Procedência</span>
+                  <span className="text-[11px] text-neutral-400">{lot.inspection.historicoApreensaoSeguro}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Checklist de Avarias Registradas na Vistoria */}
+          {/* Checklist de Avarias Registradas */}
           <div className="bg-dark-850 border border-neutral-800 rounded-xl p-5 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-gold-400">
               Apontamentos Estéticos & Avarias Catalogadas
@@ -273,7 +276,7 @@ export function LaudoModal({ lot, isOpen, onClose }: LaudoModalProps) {
               <div>
                 <span className="font-bold text-white block">Validação Digital do Edital</span>
                 <span className="text-[11px] text-neutral-400 block">
-                  Aponte a câmera para consultar a assinatura digital na base nacional.
+                  Aponte a câmera para consultar a telemetria do motor e bateria na base nacional.
                 </span>
                 <span className="font-mono text-[10px] text-gold-400">
                   ID: {lot.inspection.numeroLaudo}

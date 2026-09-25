@@ -34,19 +34,19 @@ interface AuctionContextType {
   userBidsCount: number;
 }
 
-const STORAGE_KEY = "drivebid_lots_v2";
-const STORAGE_SOUND_KEY = "drivebid_sound_enabled";
-const STORAGE_DEMO_KEY = "drivebid_auto_demo";
+const STORAGE_KEY = "voltbid_ebikes_v3";
+const STORAGE_SOUND_KEY = "voltbid_sound_enabled";
+const STORAGE_DEMO_KEY = "voltbid_auto_demo";
 
 const RIVAL_BIDDERS = [
-  { name: "CarCenter Prime", city: "São Paulo/SP" },
-  { name: "AutoRepasse Sul", city: "Curitiba/PR" },
-  { name: "InvestAuto Capital", city: "Belo Horizonte/MG" },
+  { name: "Pedal E-Riders SP", city: "São Paulo/SP" },
+  { name: "Veloce Bike Shop", city: "Balneário Camboriú/SC" },
+  { name: "EcoMobility Brasil", city: "Curitiba/PR" },
   { name: "Dra. Beatriz Fontana", city: "Campinas/SP" },
-  { name: "Veloce Motors Import", city: "Balneário Camboriú/SC" },
-  { name: "AgroCar Brasil", city: "Ribeirão Preto/SP" },
+  { name: "Trilha & Asfalto Motors", city: "Belo Horizonte/MG" },
+  { name: "GreenFleet Logística", city: "Goiânia/GO" },
   { name: "Dr. Marcelo Fagundes", city: "Santos/SP" },
-  { name: "Horizonte Frotas", city: "Goiânia/GO" },
+  { name: "MTB Seminovos Premium", city: "Ribeirão Preto/SP" },
 ];
 
 const AuctionContext = createContext<AuctionContextType | null>(null);
@@ -67,6 +67,8 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
       const savedLots = localStorage.getItem(STORAGE_KEY);
       if (savedLots) {
         setLots(JSON.parse(savedLots));
+      } else {
+        setLots(INITIAL_LOTS);
       }
       const savedSound = localStorage.getItem(STORAGE_SOUND_KEY);
       if (savedSound !== null) {
@@ -81,7 +83,6 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Save lots changes to LocalStorage
   const saveLotsToStorage = (updatedLots: Lot[]) => {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedLots));
@@ -99,7 +100,6 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
     setActiveToast(null);
   }, []);
 
-  // Auto dismiss toast after 4s
   useEffect(() => {
     if (!activeToast) return;
     const timer = setTimeout(() => {
@@ -123,7 +123,7 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
       showToast({
         title: next ? "⚡ Modo Disputa ATIVADO" : "⏸️ Modo Disputa PAUSADO",
         message: next
-          ? "Lances concorrentes simulados ocorrerão periodicamente para criar urgência."
+          ? "Lances concorrentes simulados de e-bikes ocorrerão periodicamente para criar urgência."
           : "Disputa automática pausada. Agora somente lances manuais serão registrados.",
         type: "bid",
       });
@@ -142,7 +142,7 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
     if (soundEnabled) playGavelStrike();
     showToast({
       title: "↺ Demonstração Reiniciada",
-      message: "Todos os lotes, valores iniciais e históricos de lances foram restaurados ao padrão.",
+      message: "Todos os lotes de e-bikes, valores iniciais e históricos de lances foram restaurados ao padrão.",
       type: "reset",
     });
   };
@@ -230,7 +230,7 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
         } else {
           showToast({
             title: `⚡ Novo Lance no Lote #${lot.numeroLote}`,
-            message: `${bidderName} ofertou ${formatBRL(amount)} pelo ${lot.model}.`,
+            message: `${bidderName} ofertou ${formatBRL(amount)} pela ${lot.model}.`,
             type: "outbid",
           });
         }
@@ -257,7 +257,6 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
       const currentLots = lotsRef.current;
       if (!currentLots.length) return;
 
-      // Pick a random open lot
       const activeLots = currentLots.filter((l) => !calculateRemainingTime(l.endDate).isExpired);
       if (!activeLots.length) return;
 
@@ -268,7 +267,7 @@ export function AuctionProvider({ children }: { children: React.ReactNode }) {
       const newAmount = targetLot.currentBid + chosenIncrement;
 
       placeBid(targetLot.id, newAmount, `${randomBidder.name} (${randomBidder.city})`, false);
-    }, 18000); // Trigger every 18 seconds for realistic auction tension
+    }, 18000);
 
     return () => clearInterval(interval);
   }, [placeBid]);

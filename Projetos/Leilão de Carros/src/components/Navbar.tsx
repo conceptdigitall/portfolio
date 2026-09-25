@@ -3,15 +3,14 @@
 import React from "react";
 import Link from "next/link";
 import {
-  Gavel,
+  Zap,
   Volume2,
   VolumeX,
   RotateCcw,
-  Zap,
   Search,
   MapPin,
   ShieldCheck,
-  Flame,
+  Bike,
 } from "lucide-react";
 import { useAuction } from "@/context/AuctionContext";
 
@@ -48,14 +47,14 @@ export function Navbar() {
             </span>
             <span className="hidden md:inline text-neutral-600">|</span>
             <span className="hidden md:inline text-neutral-300">
-              Leilão de Veículos • Comitentes Bancários & Frotas Executivas
+              Leilão de Bikes Elétricas • Motores Bosch/Shimano/Brose & Baterias Auditadas
             </span>
           </div>
 
           <div className="flex items-center gap-4 text-[11px]">
             <div className="flex items-center gap-1 text-emerald-400">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Laudos Periciais Cautelares DEKRA 100% Inspecionados</span>
+              <span>Laudo Pericial de Bateria & Ultrassom de Quadro de Carbono</span>
             </div>
             {userBidsCount > 0 && (
               <span className="bg-gold-500/10 text-gold-400 border border-gold-500/30 px-2 py-0.5 rounded-full font-bold">
@@ -73,19 +72,19 @@ export function Navbar() {
           <div className="flex items-center justify-between w-full md:w-auto">
             <Link href="/" className="flex items-center gap-2.5 group">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-dark-950 shadow-lg shadow-gold-500/20 group-hover:scale-105 transition-transform">
-                <Gavel className="w-5 h-5 text-dark-950" />
+                <Bike className="w-5 h-5 text-dark-950 stroke-[2.5]" />
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
                   <span className="font-display font-extrabold text-xl text-white tracking-wider">
-                    DRIVE<span className="text-gold-500">BID</span>
+                    VOLT<span className="text-gold-500">BID</span>
                   </span>
                   <span className="px-1.5 py-0.2 text-[9px] uppercase tracking-wider font-bold rounded bg-gold-500/20 text-gold-400 border border-gold-500/40">
                     Pro
                   </span>
                 </div>
                 <span className="text-[10px] text-neutral-400 uppercase tracking-widest -mt-0.5">
-                  Leilão de Veículos Premium
+                  Leilão de Bikes Elétricas
                 </span>
               </div>
             </Link>
@@ -118,7 +117,7 @@ export function Navbar() {
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Buscar por modelo, marca (ex: Porsche, G63, Hilux)..."
+                placeholder="Buscar por e-bike, marca (ex: Specialized, Trek, Bosch, Sense)..."
                 className="w-full bg-dark-850/80 border border-neutral-800 rounded-xl pl-9 pr-3 py-2 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-gold-500 transition-colors"
               />
               {searchQuery && (

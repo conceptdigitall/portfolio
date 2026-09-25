@@ -1,8 +1,8 @@
 export type LotCategory =
-  | "Recuperados de Financiamento"
-  | "Sinistro Médio"
-  | "Frotas Corporativas"
-  | "Superesportivos & Luxo";
+  | "e-MTB Performance"
+  | "Urbanas & Commuter"
+  | "Frotas & Delivery"
+  | "Superbikes de Carbono";
 
 export type LotStatus = "aberto" | "em_disputa" | "prorrogado" | "arrematado" | "encerrado";
 
@@ -18,24 +18,27 @@ export interface BidHistoryEntry {
 
 export interface DamageItem {
   part: string;
-  condition: "Sem Avarias" | "Pequeno Risco" | "Amassado Leve" | "Peça Repintada" | "Substituição Recomendada";
+  condition: "Sem Avarias" | "Pequeno Risco" | "Desgaste Natural" | "Peça Revisada" | "Substituição Recomendada";
   severity: "ok" | "leve" | "atencao";
   notes?: string;
 }
 
 export interface TechnicalSpecs {
   motor: string;
-  potencia: string;
-  cambio: string;
-  tracao: string;
-  combustivel: string;
-  cor: string;
-  portas: number;
-  finalPlaca: string;
-  chassi: string;
-  renavam: string;
-  ipva: "Pago 2026" | "Por conta do comprador";
-  documentacao: "DUT/ATPV-e pronto para transferência" | "Em regularização (prazo 30 dias)";
+  torque: string;
+  bateriaCapacidade: string; // ex: 700Wh
+  saudeBateriaSoH: number; // ex: 98%
+  ciclosCarga: number; // ex: 24 ciclos
+  autonomiaEstimadaKm: string; // ex: 80-130 km
+  quadro: string; // ex: Carbono FACT 11m
+  tamanhoQuadro: string; // ex: Tamanho M (17")
+  transmissao: string; // ex: SRAM GX Eagle AXS 12v
+  freios: string; // ex: Magura MT7 Pro Hidráulico 4 pistões
+  suspensao: string; // ex: FOX 38 Factory Kashima 160mm
+  pesoKg: string; // ex: 21.8 kg
+  odometroKm: number;
+  carregadorIncluso: "Original Rápido 4A Incluso com Chave" | "Incluso com Cabo Bivolt";
+  documentacao: "Nota Fiscal de Origem & Registro Nacional de Bike" | "Edital de Seguradora com Origem Auditada";
 }
 
 export interface InspectionReport {
@@ -44,11 +47,11 @@ export interface InspectionReport {
   registroProfissional: string;
   dataVistoria: string;
   resultadoGeral: "APROVADO" | "APROVADO COM APONTAMENTOS" | "REPROVADO";
-  pontuacaoGeral: number; // ex: 94/100
-  espessuraPinturaMediaMicrons: number;
-  estruturaStatus: "Sem cortes ou emendas, longarinas e caixas de roda intactas" | "Apontamentos leves";
-  historicoSinistro: "Sem registro de sinistro estrutural" | "Sinistro de Pequena/Média Monta regularizado";
-  historicoLeilaoAnterior: "Primeiro registro em leilão" | "Recuperação bancária";
+  pontuacaoGeral: number; // ex: 98/100
+  saudeBateriaPercent: number; // ex: 97%
+  testeUltrassomQuadro: "100% íntegro sem trincas, delaminação ou fadiga estrutural" | "Sem anomalias estruturais";
+  diagnosticoMotorEletronico: "Sem falhas de telemetria, software atualizado e torque nominal validado" | "Revisado";
+  historicoApreensaoSeguro: "Recuperação bancária / Financiamento" | "Seguradora sem perda estrutural" | "Frota corporativa desmobilizada";
 }
 
 export interface Lot {
@@ -60,7 +63,7 @@ export interface Lot {
   model: string;
   year: number;
   modelYear: number;
-  mileageKm: number;
+  odometerKm: number;
   patio: string;
   city: string;
   state: string;
@@ -71,7 +74,7 @@ export interface Lot {
   currentBid: number;
   bidCount: number;
   minIncrement: number;
-  fipeValue: number;
+  retailValue: number; // Preço de mercado/nova (equivalente FIPE de bikes)
   endDate: string; // ISO string
   highlight?: boolean;
   specs: TechnicalSpecs;

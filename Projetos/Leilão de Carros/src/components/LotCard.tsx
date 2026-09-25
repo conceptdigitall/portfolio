@@ -6,18 +6,18 @@ import Link from "next/link";
 import {
   Gavel,
   MapPin,
-  Calendar,
   Gauge,
   Heart,
   TrendingUp,
-  ShieldCheck,
+  BatteryCharging,
+  Zap,
   CheckCircle2,
   ArrowRight,
 } from "lucide-react";
 import { Lot } from "@/types/auction";
 import { CountdownBadge } from "./CountdownBadge";
 import { useAuction } from "@/context/AuctionContext";
-import { formatBRL, formatDiscountVsFipe } from "@/utils/formatters";
+import { formatBRL, formatDiscountVsRetail } from "@/utils/formatters";
 
 interface LotCardProps {
   lot: Lot;
@@ -28,7 +28,7 @@ export function LotCard({ lot }: LotCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [isBidding, setIsBidding] = useState(false);
 
-  const discount = formatDiscountVsFipe(lot.currentBid, lot.fipeValue);
+  const discount = formatDiscountVsRetail(lot.currentBid, lot.retailValue);
   const nextMinBid = lot.currentBid + lot.minIncrement;
 
   const handleQuickBid = (e: React.MouseEvent) => {
@@ -41,14 +41,16 @@ export function LotCard({ lot }: LotCardProps) {
 
   const getCategoryBadgeClass = (category: string) => {
     switch (category) {
-      case "Recuperados de Financiamento":
-        return "bg-sky-950/80 border-sky-600/60 text-sky-300";
-      case "Sinistro Médio":
-        return "bg-amber-950/80 border-amber-600/60 text-amber-300";
-      case "Frotas Corporativas":
-        return "bg-emerald-950/80 border-emerald-600/60 text-emerald-300";
-      default:
+      case "Superbikes de Carbono":
         return "bg-gold-500/15 border-gold-500/40 text-gold-300";
+      case "e-MTB Performance":
+        return "bg-emerald-950/80 border-emerald-600/60 text-emerald-300";
+      case "Urbanas & Commuter":
+        return "bg-sky-950/80 border-sky-600/60 text-sky-300";
+      case "Frotas & Delivery":
+        return "bg-amber-950/80 border-amber-600/60 text-amber-300";
+      default:
+        return "bg-neutral-800 border-neutral-700 text-neutral-300";
     }
   };
 
@@ -85,7 +87,7 @@ export function LotCard({ lot }: LotCardProps) {
           {/* Favorite button */}
           <button
             onClick={() => setIsLiked(!isLiked)}
-            aria-label="Salvar Lote nos Favoritos"
+            aria-label="Salvar E-Bike nos Favoritos"
             className={`p-2 rounded-full backdrop-blur-md border transition-all ${
               isLiked
                 ? "bg-red-500/20 border-red-500 text-red-400"
@@ -103,7 +105,7 @@ export function LotCard({ lot }: LotCardProps) {
           {discount > 0 && (
             <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-950/90 border border-emerald-700/80 text-emerald-300 text-[11px] font-bold">
               <TrendingUp className="w-3 h-3" />
-              -{discount}% FIPE
+              -{discount}% Nova
             </span>
           )}
         </div>
@@ -113,8 +115,13 @@ export function LotCard({ lot }: LotCardProps) {
       <div className="flex-1 p-5 flex flex-col justify-between space-y-4">
         <div>
           {/* Title & Brand */}
-          <div className="text-[11px] uppercase tracking-wider text-neutral-500 font-semibold">
-            {lot.brand} • {lot.year}/{lot.modelYear}
+          <div className="text-[11px] uppercase tracking-wider text-neutral-500 font-semibold flex items-center gap-2">
+            <span>{lot.brand} • {lot.year}</span>
+            <span>•</span>
+            <span className="text-emerald-400 font-mono font-bold flex items-center gap-0.5">
+              <BatteryCharging className="w-3 h-3" />
+              {lot.specs.saudeBateriaSoH}% SoH
+            </span>
           </div>
           <Link href={`/lote/${lot.id}`}>
             <h3 className="text-lg font-bold text-white group-hover:text-gold-400 transition-colors line-clamp-1 mt-0.5">
@@ -125,16 +132,16 @@ export function LotCard({ lot }: LotCardProps) {
             {lot.subtitle}
           </p>
 
-          {/* Quick Specs Icons */}
+          {/* Quick Specs Icons for E-Bikes */}
           <div className="flex items-center gap-3 text-xs text-neutral-400 mt-3 pt-3 border-t border-neutral-800/80">
             <span className="flex items-center gap-1">
-              <Gauge className="w-3.5 h-3.5 text-neutral-500" />
-              {lot.mileageKm.toLocaleString("pt-BR")} km
+              <Zap className="w-3.5 h-3.5 text-gold-500" />
+              {lot.specs.torque}
             </span>
             <span>•</span>
             <span className="flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-neutral-500" />
-              {lot.year}
+              <Gauge className="w-3.5 h-3.5 text-neutral-500" />
+              {lot.odometerKm} km
             </span>
             <span>•</span>
             <span className="flex items-center gap-1 truncate">
@@ -182,7 +189,7 @@ export function LotCard({ lot }: LotCardProps) {
             <Link
               href={`/lote/${lot.id}`}
               className="py-2 px-3 rounded-lg bg-dark-900 hover:bg-neutral-800 border border-neutral-700 text-xs font-semibold text-neutral-300 hover:text-white flex items-center justify-center transition-colors"
-              title="Abrir arena do lote"
+              title="Abrir arena da e-bike"
             >
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
@@ -193,7 +200,7 @@ export function LotCard({ lot }: LotCardProps) {
         <div className="flex items-center justify-between text-[11px] text-neutral-400">
           <span className="flex items-center gap-1 text-emerald-400 font-medium">
             <CheckCircle2 className="w-3 h-3" />
-            Laudo Cautelar {lot.inspection.resultadoGeral}
+            Laudo Técnico {lot.inspection.resultadoGeral} ({lot.specs.saudeBateriaSoH}% SoH)
           </span>
           <span className="text-neutral-500">Pátio Credenciado</span>
         </div>

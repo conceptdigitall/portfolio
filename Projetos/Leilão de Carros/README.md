@@ -1,6 +1,6 @@
-# DriveBid Pro • Plataforma de Leilão Automotivo (Protótipo Comercial)
+# VoltBid Pro • Plataforma de Leilão de Bikes Elétricas (Protótipo Comercial)
 
-Protótipo navegável de alta fidelidade desenvolvido especificamente para apresentação comercial, validação com o cliente e fechamento de contrato de desenvolvimento.
+Protótipo navegável de alta fidelidade desenvolvido especificamente para apresentação comercial, validação com o cliente e fechamento de contrato no mercado de **Leilões de Bicicletas Elétricas (e-Bikes & Mobilidade Urbana)**.
 
 Inspirado na estética moderna e luxuosa da **DriveBay** (Dark Mode automotivo `#080808` com acentos em Amarelo Ouro `#FFB800`), contadores de tempo regressivos modulares e mecanismo de disputa de lances em tempo real.
 
@@ -25,7 +25,7 @@ http://localhost:3000
 
 O projeto foi construído seguindo 100% as convenções nativas do **Next.js App Router**:
 
-1. Suba o repositório para o seu GitHub/GitLab.
+1. Suba o repositório para o seu GitHub/GitLab (`https://github.com/conceptdigitall/leilaocarros`).
 2. Acesse [vercel.com](https://vercel.com) e clique em **Add New Project**.
 3. Selecione o repositório — a Vercel detectará automaticamente o framework Next.js.
 4. Clique em **Deploy** (sem necessidade de variáveis de ambiente obrigatórias).
@@ -37,25 +37,25 @@ O projeto foi construído seguindo 100% as convenções nativas do **Next.js App
 
 Durante a reunião com o cliente ou diretoria, siga esta sequência de demonstração para gerar o máximo de impacto:
 
-1. **Impacto Visual Inicial (Hero & Inspiração DriveBay):**
-   - Apresente o Lote em Destaque (`Mercedes-Benz G63 AMG 2023`).
+1. **Impacto Visual Inicial (Hero E-Bike & Inspiração DriveBay):**
+   - Apresente o Lote em Destaque (`Specialized Turbo Levo Pro Carbon 2024`).
    - Mostre o **Cronômetro Regressivo Dinâmico em Blocos** com contagem em segundos ao vivo.
-   - Destaque o comparativo com a **Tabela FIPE** (-25% FIPE) gerando percepção de oportunidade imediata.
+   - Destaque o comparativo com o **Preço de Nova no Mercado** (-48% vs Nova) e as métricas cruciais de e-bike: **Saúde da Bateria (98% SoH • 14 ciclos)** e **Motor Brose 90Nm**.
 
 2. **Simulação de Lances & Prova Social (Gatilho de Urgência):**
-   - Na própria vitrine ou no Hero, clique em `+ R$ 10.000` ou no botão `Dar Lance`.
+   - Na própria vitrine ou no Hero, clique em `+ R$ 1.000` ou no botão `Dar Lance`.
    - Mostre o **som de sino/martelo sintetizado** (sem depender de arquivos externos), o disparo de **confetes**, a atualização instantânea do valor e o toast de liderança da disputa.
-   - Aponte para o switch **`Modo Disputa: ON`** no topo da tela: a cada 18 segundos, bots simulados com nomes reais ("CarCenter Prime - SP", "AutoRepasse Sul - PR") dão lances concorrentes, provando ao cliente como a plataforma cria senso de urgência e disputa real entre compradores.
+   - Aponte para o switch **`Modo Disputa: ON`** no topo da tela: a cada 18 segundos, bots simulados com nomes reais de ciclistas e bike shops (*"Pedal E-Riders SP"*, *"Veloce Bike Shop - SC"*) dão lances concorrentes, provando ao cliente como a plataforma cria senso de urgência e disputa real entre compradores.
 
 3. **Regra de Prorrogação Anti-Sniping (+60s):**
    - Mostre que lances no final da contagem ativam automaticamente a prorrogação do cronômetro para evitar que usuários percam lotes no último segundo.
 
-4. **Página Individual do Lote & Laudo Cautelar Pericial:**
+4. **Página Individual do Lote & Laudo Técnico de E-Bike:**
    - Acesse o Lote #001 ou Lote #002.
    - Navegue pela galeria de fotos em alta resolução e acione o botão **`Zoom`**.
-   - Mostre o **Histórico Lateral de Lances ao Vivo** com ranking e selo de "Líder".
-   - Desça até o **Checklist de Avarias** e abra o botão **`Edital & Laudo Pericial`**:
-     - Um documento com padrão pericial oficial (DEKRA/Super Visão) se abre com QR Code, pontuação (98/100), perito CREA credenciado e auditoria de 150 itens.
+   - Mostre a **Ficha Técnica Especializada de E-Bike**: capacidade da bateria (Wh), ciclos, torque nominal (Nm), tamanho do quadro, peso e carregador incluso.
+   - Desça até o **Checklist de Avarias** e abra o botão **`Edital & Laudo da Bateria`**:
+     - Um documento com padrão pericial oficial se abre com QR Code, pontuação (99/100), perito CREA credenciado, telemetria oficial do motor/bateria e varredura por ultrassom do quadro de carbono sem trincas.
      - Clique em **`Imprimir / Salvar PDF`**: o laudo é formatado perfeitamente para impressão ou geração de PDF oficial pelo navegador!
 
 5. **Controle Total da Demo (`↺ Reset Demo`):**
@@ -68,8 +68,8 @@ Durante a reunião com o cliente ou diretoria, siga esta sequência de demonstra
 
 - **Framework:** Next.js 14 (App Router)
 - **Linguagem:** TypeScript
-- **Estilização:** Tailwind CSS v3 (Dark Mode Automotivo, Amarelo Ouro `#FFB800`)
+- **Estilização:** Tailwind CSS v3 (Dark Mode, Amarelo Ouro `#FFB800`)
 - **Ícones:** Lucide React
-- **Áudio:** Web Audio API Sintetizado (Zero dependência de arquivos de áudio externos)
+- **Áudio:** Web Audio API Sintetizado (Zero dependência de arquivos externos)
 - **Efeitos:** Canvas Confetti
 - **Estado & Persistência:** React Context API + LocalStorage Sync
