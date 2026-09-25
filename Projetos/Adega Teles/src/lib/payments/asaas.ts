@@ -65,9 +65,14 @@ export function getAsaasHeaders(): HeadersInit {
  */
 export function validarWebhookToken(tokenRecebido: string | null): boolean {
   const configuredToken = process.env.ASAAS_WEBHOOK_TOKEN;
-  // Se não houver token configurado em ambiente de desenvolvimento, aceita a requisição
+  // Sem token configurado: aceita só em desenvolvimento local. Em produção, recusa
+  // (senão qualquer pessoa poderia enviar um "pagamento confirmado" falso).
   if (!configuredToken) {
-    console.warn('[Asaas Webhook] ASAAS_WEBHOOK_TOKEN não configurado no ambiente. Ignorando validação estrita de token.');
+    if (process.env.NODE_ENV === 'production') {
+      console.error('[Asaas Webhook] ASAAS_WEBHOOK_TOKEN não configurado em produção. Requisição recusada.');
+      return false;
+    }
+    console.warn('[Asaas Webhook] ASAAS_WEBHOOK_TOKEN não configurado (dev). Aceitando sem validar.');
     return true;
   }
   return tokenRecebido === configuredToken;
