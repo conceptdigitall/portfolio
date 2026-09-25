@@ -13,6 +13,13 @@ const securityHeaders = [
 const nextConfig = {
     reactStrictMode: true,
     poweredByHeader: false,
+    // O painel administrativo agora é o CRM Concept (login feito lá).
+    async redirects() {
+        return [
+            { source: '/admin', destination: 'https://concept-crm-gamma.vercel.app/dashboard', permanent: false },
+            { source: '/admin/:path*', destination: 'https://concept-crm-gamma.vercel.app/dashboard', permanent: false },
+        ];
+    },
     async headers() {
         return [{ source: '/:path*', headers: securityHeaders }];
     },

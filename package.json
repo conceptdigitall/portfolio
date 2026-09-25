@@ -8,7 +8,7 @@
     "dev:crm": "npm --prefix \"CRM Concept/wacrm\" run dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@hookform/resolvers": "^5.7.1",
@@ -18,12 +18,12 @@
     "canvas-confetti": "^1.9.4",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
-    "eslint-config-next": "^14.2.15",
+    "eslint-config-next": "^16.3.6",
     "framer-motion": "^12.31.0",
-    "lucide-react": "^0.344.0",
-    "next": "^14.2.35",
-    "react": "^18.3.1",
-    "react-dom": "^18.2.0",
+    "lucide-react": "^1.48.0",
+    "next": "^16.3.6",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
     "react-facebook-pixel": "^1.0.4",
     "react-hook-form": "^7.85.0",
     "react-router-dom": "^7.12.0",
@@ -35,12 +35,10 @@
   "devDependencies": {
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^25.9.5",
-    "@types/react": "^18.2.64",
-    "@types/react-dom": "^18.2.21",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.4.18",
-    "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.0",
-    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint": "^9.39.5",
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "5.9.3"
