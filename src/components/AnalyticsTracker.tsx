@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { trackEvent, updateEvent } from '@/lib/supabase';
+import { trackEvent, updatePageView } from '@/lib/supabase';
 
 export function AnalyticsTracker() {
     const pathname = usePathname();
@@ -36,23 +36,25 @@ export function AnalyticsTracker() {
             
             window.addEventListener('scroll', handleScroll, { passive: true });
 
-            const result = await trackEvent('page_views', {
+            // O id é gerado aqui no navegador, então não precisamos ler a linha de volta do banco.
+            const id = typeof crypto !== 'undefined' && 'randomUUID' in crypto ? crypto.randomUUID() : null;
+            if (!id) return;
+
+            const saved = await trackEvent('page_views', {
+                id,
                 path: pathname,
                 time_spent: 0,
                 max_scroll: maxScroll.current,
                 device: typeof window !== 'undefined' && window.innerWidth < 768 ? 'Mobile' : 'Desktop',
             });
-            
-            if (result && result.id) {
-                currentSessionId.current = result.id;
-                
+
+            if (saved) {
+                currentSessionId.current = id;
+
                 // A cada 10 segundos, atualiza o tempo e a rolagem máxima
                 intervalId = setInterval(() => {
                     const elapsedSeconds = Math.floor((Date.now() - startTime.current) / 1000);
-                    updateEvent('page_views', result.id, { 
-                        time_spent: elapsedSeconds,
-                        max_scroll: maxScroll.current 
-                    });
+                    updatePageView(id, elapsedSeconds, maxScroll.current);
                 }, 10000);
             }
         };
@@ -67,10 +69,7 @@ export function AnalyticsTracker() {
             // Faz um update final se tivermos ID
             if (currentSessionId.current) {
                 const elapsedSeconds = Math.floor((Date.now() - startTime.current) / 1000);
-                updateEvent('page_views', currentSessionId.current, { 
-                    time_spent: elapsedSeconds,
-                    max_scroll: maxScroll.current 
-                });
+                updatePageView(currentSessionId.current, elapsedSeconds, maxScroll.current);
             }
             currentSessionId.current = null;
         };

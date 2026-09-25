@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createClient } from '@supabase/supabase-js';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://pkvlnhfzhjjsblotzoxn.supabase.co';
@@ -9,32 +8,37 @@ export const supabase = supabaseUrl && supabaseKey
     ? createClient(supabaseUrl, supabaseKey)
     : null;
 
-// Helper para registro seguro
-export const trackEvent = async (table: string, data: any) => {
+// Helper para registro seguro.
+// Só INSERE (sem ler de volta): visitantes anônimos não têm permissão de leitura nas tabelas de métricas.
+export const trackEvent = async (table: string, data: Record<string, unknown>) => {
     if (!supabase) {
         console.warn(`[Analytics] Tentativa de gravar em '${table}' ignorada (chaves do Supabase não configuradas)`);
-        return null;
+        return false;
     }
 
     try {
-        const { error, data: result } = await supabase.from(table).insert([data]).select().single();
+        const { error } = await supabase.from(table).insert([data]);
         if (error) throw error;
-        return result;
+        return true;
     } catch (err) {
         console.error(`[Analytics] Falha ao registrar evento na tabela '${table}':`, err);
-        return null;
+        return false;
     }
 };
 
-export const updateEvent = async (table: string, id: string, data: any) => {
-    if (!supabase) return null;
+// Atualiza tempo na página e rolagem de UMA visita, via função segura no banco
+// (track_page_view_update), que só mexe nesses dois campos e só aumenta os valores.
+export const updatePageView = async (id: string, timeSpent: number, maxScroll: number) => {
+    if (!supabase) return;
 
     try {
-        const { error, data: result } = await supabase.from(table).update(data).eq('id', id).select().single();
+        const { error } = await supabase.rpc('track_page_view_update', {
+            p_id: id,
+            p_time_spent: timeSpent,
+            p_max_scroll: maxScroll,
+        });
         if (error) throw error;
-        return result;
     } catch (err) {
-        console.error(`[Analytics] Falha ao atualizar evento na tabela '${table}':`, err);
-        return null;
+        console.error('[Analytics] Falha ao atualizar page_view:', err);
     }
-}
+};
