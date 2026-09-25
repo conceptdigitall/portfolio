@@ -19,11 +19,14 @@ const CookieConsent = () => {
 
     const handleAccept = () => {
         grantConsent();
+        // Avisa o SiteAnalytics (Google Analytics) que o cookie foi aceito
+        window.dispatchEvent(new Event('cookie-consent-change'));
         setIsVisible(false);
     };
 
     const handleReject = () => {
         localStorage.setItem('cookie_consent', 'false');
+        window.dispatchEvent(new Event('cookie-consent-change'));
         setIsVisible(false);
     };
 

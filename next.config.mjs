@@ -8,16 +8,18 @@ const supabaseWs = supabaseUrl.replace('https://', 'wss://');
 /**
  * Content-Security-Policy: lista do que o site PODE carregar.
  * Qualquer script, conexão ou iframe fora desta lista é bloqueado pelo navegador.
- * Se adicionar um serviço novo (ex.: Google Analytics), inclua o domínio dele aqui.
+ * Se adicionar um serviço novo, inclua o domínio dele aqui.
+ * Google Analytics 4 já está liberado (googletagmanager + google-analytics).
  */
+const ga = 'https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com';
 const csp = [
     "default-src 'self'",
     // 'unsafe-inline' é necessário para os scripts de inicialização do Next.js
-    `script-src 'self' 'unsafe-inline' https://connect.facebook.net${isDev ? " 'unsafe-eval'" : ''}${isPreview ? ' https://vercel.live' : ''}`,
+    `script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.googletagmanager.com${isDev ? " 'unsafe-eval'" : ''}${isPreview ? ' https://vercel.live' : ''}`,
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: blob: https://www.facebook.com",
+    `img-src 'self' data: blob: https://www.facebook.com ${ga}`,
     "font-src 'self' data:",
-    `connect-src 'self' ${supabaseUrl} ${supabaseWs} https://www.facebook.com https://connect.facebook.net${isPreview ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,
+    `connect-src 'self' ${supabaseUrl} ${supabaseWs} https://www.facebook.com https://connect.facebook.net ${ga}${isPreview ? ' https://vercel.live wss://ws-us3.pusher.com' : ''}`,
     `frame-src 'self' https://www.facebook.com${isPreview ? ' https://vercel.live' : ''}`,
     "object-src 'none'",
     "base-uri 'self'",
