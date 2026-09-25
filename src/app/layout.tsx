@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
-import { SiteHeader, SiteFooter, WhatsAppFloat } from "../components/home/SiteChrome";
+import { SiteHeader, SiteFooter } from "../components/home/SiteChrome";
+import ChatWidget from "../components/home/ChatWidget";
 import { Suspense } from "react";
 import PixelTracker from "../components/PixelTracker";
 import CookieConsent from "../components/CookieConsent";
@@ -58,7 +59,7 @@ export default function RootLayout({
                     {children}
                 </main>
                 <SiteFooter />
-                <WhatsAppFloat />
+                <ChatWidget />
                 <SpeedInsights />
             </body>
         </html>
