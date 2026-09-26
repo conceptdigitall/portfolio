@@ -4,11 +4,12 @@
 
 @layer base {
     body {
-        @apply bg-concept-ground text-concept-ink font-inter font-normal min-h-[100dvh] overflow-x-hidden;
+        @apply bg-night text-night-text font-inter font-normal min-h-[100dvh] overflow-x-hidden;
     }
 
     html {
         @apply scroll-smooth;
+        color-scheme: dark;
     }
 
     ::selection {

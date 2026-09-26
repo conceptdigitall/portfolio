@@ -14,11 +14,11 @@ const useIsInternal = () => {
 
 const Wordmark = ({ size = 'text-base' }: { size?: string }) => (
     <span className="flex flex-col gap-1.5">
-        <span className={`font-poppins ${size} tracking-[0.32em] text-concept-blue`}>
+        <span className={`font-poppins ${size} tracking-[0.32em] text-night-text`}>
             <strong className="font-bold">CONCEPT</strong> <span className="font-normal">DIGITAL</span>
         </span>
         <span className="flex w-[72px] h-[3px]" aria-hidden="true">
-            <span className="flex-1 bg-concept-blue" />
+            <span className="flex-1 bg-concept-electric" />
             <span className="flex-1 bg-concept-yellow" />
         </span>
     </span>
@@ -34,21 +34,21 @@ const NAV = [
 export const SiteHeader = () => {
     if (useIsInternal()) return null;
     return (
-        <header className="relative z-40">
+        <header className="relative z-40 border-b border-night-rule">
             <div className="mx-auto max-w-[1440px] h-[88px] px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-6">
                 <a href="#inicio" aria-label="Concept Digital, página inicial">
                     <Wordmark />
                 </a>
                 <nav aria-label="Principal" className="hidden md:flex items-center gap-8 xl:hidden">
                     {NAV.map((n) => (
-                        <a key={n.href} href={n.href} className="text-[15px] font-medium text-concept-ink hover:text-concept-blue transition-colors">
+                        <a key={n.href} href={n.href} className="text-[15px] font-medium text-night-soft hover:text-concept-yellow transition-colors">
                             {n.label}
                         </a>
                     ))}
                 </nav>
                 <WhatsAppLink
                     buttonId="header_whatsapp"
-                    className="flex items-center gap-2.5 min-h-[48px] pl-2 pr-5 rounded-full bg-concept-ink text-white text-[15px] font-semibold hover:bg-concept-blue transition-colors"
+                    className="flex items-center gap-2.5 min-h-[48px] pl-2 pr-5 rounded-full bg-night-card border border-night-edge text-night-text text-[15px] font-semibold hover:border-concept-yellow transition-colors"
                 >
                     <span className="w-8 h-8 rounded-full bg-whatsapp flex items-center justify-center">
                         <WhatsAppIcon className="w-[18px] h-[18px] text-white" />
@@ -64,38 +64,38 @@ export const SiteHeader = () => {
 export const SiteFooter = () => {
     if (useIsInternal()) return null;
     return (
-        <footer className="bg-white border-t border-concept-line">
+        <footer className="bg-night border-t border-night-rule">
             <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-20 pt-16 lg:pt-20 pb-28 lg:pb-10 flex flex-col gap-14">
                 <div className="grid grid-cols-2 lg:grid-cols-[340px_170px_220px_220px_1fr] gap-10 lg:gap-12">
                     <div className="col-span-2 lg:col-span-1 flex flex-col gap-5">
                         <Wordmark size="text-lg" />
-                        <p className="text-base leading-relaxed text-concept-muted max-w-sm">
+                        <p className="text-base leading-relaxed text-night-muted max-w-sm">
                             Engenharia de vendas e design para negócios premium. Ativos digitais rápidos, elegantes e feitos para converter.
                         </p>
-                        <Wolf tone="ink" animated={false} className="w-[120px] h-[90px]" />
+                        <Wolf animated={false} className="w-[120px] h-[90px]" />
                     </div>
 
                     <nav aria-label="Navegação do rodapé" className="flex flex-col gap-3.5">
-                        <span className="text-[13px] font-semibold tracking-[0.14em] uppercase">Navegação</span>
+                        <span className="text-[13px] font-semibold tracking-[0.14em] uppercase text-night-dim">Navegação</span>
                         {NAV.map((n) => (
-                            <a key={n.href} href={n.href} className="text-[15px] text-concept-ink hover:text-concept-blue transition-colors">{n.label}</a>
+                            <a key={n.href} href={n.href} className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">{n.label}</a>
                         ))}
                     </nav>
 
                     <div className="flex flex-col gap-3.5">
-                        <span className="text-[13px] font-semibold tracking-[0.14em] uppercase">Soluções</span>
-                        <a href="#solucoes" className="text-[15px] text-concept-ink hover:text-concept-blue transition-colors">Landing pages</a>
-                        <a href="#solucoes" className="text-[15px] text-concept-ink hover:text-concept-blue transition-colors">CRM e gestão de leads</a>
-                        <a href="#solucoes" className="text-[15px] text-concept-ink hover:text-concept-blue transition-colors">Sistemas sob demanda</a>
-                        <a href="#solucoes" className="text-[15px] text-concept-ink hover:text-concept-blue transition-colors">Ecossistema integrado</a>
+                        <span className="text-[13px] font-semibold tracking-[0.14em] uppercase text-night-dim">Soluções</span>
+                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Landing pages</a>
+                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">CRM e gestão de leads</a>
+                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Sistemas sob demanda</a>
+                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Ecossistema integrado</a>
                     </div>
 
                     <div className="col-span-2 sm:col-span-1 flex flex-col gap-3.5">
-                        <span className="text-[13px] font-semibold tracking-[0.14em] uppercase">Contato</span>
-                        <WhatsAppLink buttonId="footer_whatsapp_link" className="text-[15px] text-concept-ink hover:text-concept-blue transition-colors">
+                        <span className="text-[13px] font-semibold tracking-[0.14em] uppercase text-night-dim">Contato</span>
+                        <WhatsAppLink buttonId="footer_whatsapp_link" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">
                             WhatsApp {WHATSAPP_DISPLAY}
                         </WhatsAppLink>
-                        <span className="text-[15px] text-concept-muted">Baixada Santista, SP</span>
+                        <span className="text-[15px] text-night-muted">Baixada Santista, SP</span>
                     </div>
 
                     <div className="col-span-2 lg:col-span-1 self-start bg-concept-blue rounded-3xl p-7 flex flex-col gap-4 text-white">
@@ -111,9 +111,9 @@ export const SiteFooter = () => {
                     </div>
                 </div>
 
-                <div className="border-t border-concept-line pt-7 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
-                    <span className="text-sm text-concept-muted">© {new Date().getFullYear()} Concept Digital. Todos os direitos reservados.</span>
-                    <a href="#inicio" className="text-sm font-medium text-concept-ink hover:text-concept-blue transition-colors">Voltar ao topo</a>
+                <div className="border-t border-night-rule pt-7 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
+                    <span className="text-sm text-night-dim">© {new Date().getFullYear()} Concept Digital. Todos os direitos reservados.</span>
+                    <a href="#inicio" className="text-sm font-medium text-night-soft hover:text-concept-yellow transition-colors">Voltar ao topo</a>
                 </div>
             </div>
         </footer>
@@ -128,10 +128,10 @@ export const WhatsAppFloat = () => {
             aria-label="Falar com a Concept Digital no WhatsApp"
             className="group fixed right-4 bottom-5 sm:right-8 sm:bottom-8 z-50 flex items-center gap-3"
         >
-            <span className="hidden sm:inline-block bg-concept-ink text-white text-sm font-semibold px-4 py-2.5 rounded-full opacity-90 group-hover:opacity-100 transition-opacity">
+            <span className="hidden sm:inline-block bg-night-card border border-night-edge text-night-text text-sm font-semibold px-4 py-2.5 rounded-full opacity-90 group-hover:opacity-100 transition-opacity">
                 Fale com a gente
             </span>
-            <span className="w-[60px] h-[60px] sm:w-16 sm:h-16 rounded-full bg-whatsapp border-[3px] border-white flex items-center justify-center group-hover:scale-105 transition-transform">
+            <span className="w-[60px] h-[60px] sm:w-16 sm:h-16 rounded-full bg-whatsapp border-[3px] border-night flex items-center justify-center group-hover:scale-105 transition-transform">
                 <WhatsAppIcon className="w-8 h-8 text-white" />
             </span>
         </WhatsAppLink>

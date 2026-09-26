@@ -3,7 +3,7 @@ import Wolf from './Wolf';
 import WhatsAppLink, { WhatsAppIcon } from './WhatsAppLink';
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
-    <span className="text-sm font-semibold tracking-[0.14em] uppercase text-concept-blue">{children}</span>
+    <span className="text-sm font-semibold tracking-[0.14em] uppercase text-concept-yellow">{children}</span>
 );
 
 const H2 = ({ children, className = '' }: { children: ReactNode; className?: string }) => (
@@ -24,10 +24,10 @@ export const Solutions = () => (
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {SOLUTIONS.map((s, i) => (
-                <div key={s.title} className="bg-white border border-concept-line rounded-[28px] p-8 flex flex-col gap-4 min-h-[240px]">
-                    <span className="font-poppins text-[15px] font-semibold text-concept-blue">{String(i + 1).padStart(2, '0')}</span>
+                <div key={s.title} className="bg-night-card border border-night-line rounded-[28px] p-8 flex flex-col gap-4 min-h-[240px]">
+                    <span className="font-poppins text-[15px] font-semibold text-concept-sky">{String(i + 1).padStart(2, '0')}</span>
                     <span className="font-poppins text-[26px] font-bold leading-tight">{s.title}</span>
-                    <span className="text-base leading-relaxed text-concept-muted">{s.text}</span>
+                    <span className="text-base leading-relaxed text-night-muted">{s.text}</span>
                 </div>
             ))}
         </div>
@@ -70,10 +70,10 @@ export const Process = () => (
         </div>
         <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-6">
             {STEPS.map((s, i) => (
-                <li key={s.title} className={`flex flex-col gap-3 border-t-[3px] pt-5 ${i === STEPS.length - 1 ? 'border-concept-yellow' : 'border-concept-blue'}`}>
-                    <span className="font-poppins text-[15px] font-semibold text-concept-blue">{String(i + 1).padStart(2, '0')}</span>
+                <li key={s.title} className={`flex flex-col gap-3 pt-5 ${i === STEPS.length - 1 ? 'border-t-2 border-concept-yellow' : 'border-t border-night-edge'}`}>
+                    <span className={`font-poppins text-[15px] font-semibold ${i === STEPS.length - 1 ? 'text-concept-yellow' : 'text-concept-sky'}`}>{String(i + 1).padStart(2, '0')}</span>
                     <span className="font-poppins text-[21px] font-semibold">{s.title}</span>
-                    <span className="text-[15px] leading-relaxed text-concept-muted">{s.text}</span>
+                    <span className="text-[15px] leading-relaxed text-night-muted">{s.text}</span>
                 </li>
             ))}
         </ol>
@@ -82,10 +82,11 @@ export const Process = () => (
 
 export const ContactCTA = () => (
     <section id="contato" className="scroll-mt-6 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-20 pt-24 lg:pt-32 pb-24 lg:pb-32">
-        <div className="bg-concept-ink rounded-3xl lg:rounded-[32px] p-7 sm:p-10 lg:p-16 flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-12 text-white overflow-hidden">
-            <div className="flex flex-col gap-6 max-w-[700px]">
+        <div className="relative bg-night-card border border-night-line rounded-3xl lg:rounded-[32px] p-7 sm:p-10 lg:p-16 flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-12 text-white overflow-hidden">
+            <span aria-hidden="true" className="absolute -right-16 -top-20 w-[560px] h-[560px] rounded-full bg-[radial-gradient(circle,rgba(61,91,255,0.22)_0%,rgba(61,91,255,0)_65%)] pointer-events-none" />
+            <div className="relative flex flex-col gap-6 max-w-[700px]">
                 <H2 className="lg:text-[58px] leading-[1.05]">Vamos resolver o gargalo do seu negócio.</H2>
-                <p className="text-base lg:text-lg leading-relaxed text-white/80">
+                <p className="text-base lg:text-lg leading-relaxed text-night-muted">
                     Uma conversa rápida para entender o momento da sua empresa e indicar a solução certa.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3.5 mt-2">
@@ -96,12 +97,12 @@ export const ContactCTA = () => (
                         <WhatsAppIcon className="w-[22px] h-[22px]" />
                         Falar no WhatsApp
                     </WhatsAppLink>
-                    <a href="#projetos" className="text-white font-medium text-[17px] px-7 min-h-[58px] rounded-full border-[1.5px] border-white/40 flex items-center justify-center hover:border-white transition-colors">
+                    <a href="#projetos" className="text-white font-medium text-[17px] px-7 min-h-[58px] rounded-full border-[1.5px] border-night-edge flex items-center justify-center hover:border-white transition-colors">
                         Ver projetos
                     </a>
                 </div>
             </div>
-            <Wolf className="w-[260px] h-[195px] lg:w-[380px] lg:h-[285px] flex-shrink-0" />
+            <Wolf className="relative w-[260px] h-[195px] lg:w-[380px] lg:h-[285px] flex-shrink-0" />
         </div>
     </section>
 );

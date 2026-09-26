@@ -18,6 +18,8 @@ const poppins = Poppins({ subsets: ["latin"], variable: "--font-poppins", weight
 export const viewport: Viewport = {
     width: "device-width",
     initialScale: 1,
+    themeColor: "#06081A",
+    colorScheme: "dark",
     // Sem maximumScale: bloquear o zoom prejudica a acessibilidade (e a nota do Lighthouse).
 };
 
@@ -41,6 +43,17 @@ export const metadata: Metadata = {
     },
     twitter: { card: "summary_large_image" },
     robots: { index: true, follow: true },
+    icons: {
+        icon: [
+            { url: "/favicon.ico" },
+            { url: "/favicon.svg", type: "image/svg+xml" },
+            { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+        ],
+        apple: [
+            { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+        ],
+    },
+    manifest: "/site.webmanifest",
     // Google Search Console → "Tag HTML": cole só o valor do content em NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.
     verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
         ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }

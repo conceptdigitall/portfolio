@@ -27,10 +27,10 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
             aria-label={`${project.name}: ${action} (abre em nova aba)`}
             className={`group flex flex-col rounded-3xl overflow-hidden border transition-colors ${c
                 ? 'bg-concept-blue text-white border-concept-blue hover:bg-concept-darkblue'
-                : 'bg-white text-concept-ink border-concept-line hover:border-concept-blue'
+                : 'bg-night-card text-night-text border-night-line hover:border-concept-sky'
                 }`}
         >
-            <div className={`relative h-44 mx-2.5 mt-2.5 rounded-2xl overflow-hidden ${c ? 'bg-white/10' : 'bg-concept-soft'}`}>
+            <div className={`relative h-44 mx-2.5 mt-2.5 rounded-2xl overflow-hidden ${c ? 'bg-[#0A1C9A]' : 'bg-night-raise'}`}>
                 {project.image_url ? (
                     <Image
                         src={project.image_url}
@@ -41,20 +41,20 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
                     />
                 ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <Wolf tone={c ? 'light' : 'ink'} animated={false} className="w-32 h-24 opacity-80" />
+                        <Wolf tone="light" animated={false} className="w-32 h-24 opacity-80" />
                     </div>
                 )}
             </div>
             <div className="flex flex-col gap-1.5 px-[18px] pt-4 pb-[18px] flex-1">
                 <div className="flex justify-between items-center">
-                    <span className={`text-xs font-semibold tracking-[0.08em] uppercase ${c ? 'text-concept-yellow' : 'text-concept-blue'}`}>
+                    <span className={`text-xs font-semibold tracking-[0.08em] uppercase ${c ? 'text-concept-yellow' : 'text-concept-sky'}`}>
                         {project.niche}
                     </span>
                     <span className="text-[13px] font-semibold opacity-60">{String(index + 1).padStart(2, '0')}</span>
                 </div>
                 <span className="font-poppins text-[19px] font-semibold leading-tight">{project.name}</span>
-                <span className={`text-sm leading-normal ${c ? 'text-white/85' : 'text-concept-muted'}`}>{project.summary}</span>
-                <span className={`mt-auto pt-3 text-sm font-semibold underline-offset-4 group-hover:underline ${c ? 'text-white' : 'text-concept-blue'}`}>
+                <span className={`text-sm leading-normal ${c ? 'text-white/85' : 'text-night-muted'}`}>{project.summary}</span>
+                <span className={`mt-auto pt-3 text-sm font-semibold underline-offset-4 group-hover:underline ${c ? 'text-white' : 'text-night-text'}`}>
                     {action}
                 </span>
             </div>
@@ -74,7 +74,7 @@ const ProjectsGrid = () => {
         <section id="projetos" className="scroll-mt-6 mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-20 pt-24 lg:pt-36 flex flex-col gap-10 lg:gap-12">
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8">
                 <div className="flex flex-col gap-3.5">
-                    <span className="text-sm font-semibold tracking-[0.14em] uppercase text-concept-blue">Projetos</span>
+                    <span className="text-sm font-semibold tracking-[0.14em] uppercase text-concept-yellow">Projetos</span>
                     <h2 className="font-poppins text-[34px] sm:text-5xl lg:text-[56px] font-bold leading-[1.08] tracking-[-0.02em] max-w-[720px]">
                         Ativos digitais que já construímos.
                     </h2>
@@ -90,12 +90,12 @@ const ProjectsGrid = () => {
                                 onClick={() => setActive(f.id)}
                                 aria-pressed={on}
                                 className={`flex-shrink-0 min-h-[46px] px-[18px] rounded-full flex items-center gap-2 text-[15px] font-medium border-[1.5px] transition-colors ${on
-                                    ? 'bg-concept-blue text-white border-concept-blue'
-                                    : 'bg-white text-concept-ink border-[#D5D9E6] hover:border-concept-blue'
+                                    ? 'bg-night-text text-night border-night-text'
+                                    : 'bg-transparent text-night-soft border-night-edge hover:border-night-text'
                                     }`}
                             >
                                 {f.label}
-                                <span className={`text-xs font-semibold px-[7px] py-0.5 rounded-full ${on ? 'bg-concept-yellow text-concept-ink' : 'bg-concept-soft text-concept-muted'}`}>
+                                <span className={`text-xs font-semibold px-[7px] py-0.5 rounded-full ${on ? 'bg-concept-yellow text-concept-ink' : 'bg-[#141A3D] text-night-muted'}`}>
                                     {count}
                                 </span>
                             </button>

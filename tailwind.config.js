@@ -23,6 +23,19 @@ export default {
                 'concept-tint': '#DCE3FF',
                 'concept-soft': '#EEF1FA',
                 'whatsapp': '#25D366',
+                // Tema dark premium (2026-09-25)
+                'night': '#06081A',        // fundo da página
+                'night-card': '#0C1030',   // cards
+                'night-raise': '#111740',  // card em destaque / miniaturas
+                'night-line': '#1E2550',   // contorno dos cards
+                'night-edge': '#2A3160',   // contorno de botões e divisórias
+                'night-rule': '#161B3D',   // linhas do cabeçalho e rodapé
+                'night-text': '#F3F4FA',   // texto principal
+                'night-soft': '#C7CBE0',   // links e navegação
+                'night-muted': '#A3A9C7',  // texto secundário
+                'night-dim': '#7F86A8',    // rótulos pequenos
+                'concept-sky': '#6E86FF',  // azul legível sobre o escuro
+                'concept-electric': '#3D5BFF',
             },
             fontFamily: {
                 montserrat: ['var(--font-montserrat)', 'sans-serif'],
