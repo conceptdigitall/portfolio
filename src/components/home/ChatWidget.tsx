@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { whatsappLink, trackWhatsAppClick } from '@/lib/whatsapp';
 import { WhatsAppIcon } from './WhatsAppLink';
@@ -126,8 +127,14 @@ export default function ChatWidget() {
                     className="fixed inset-0 z-[60] flex flex-col bg-white sm:inset-auto sm:right-8 sm:bottom-28 sm:w-[390px] sm:h-[min(620px,calc(100dvh-9rem))] sm:rounded-3xl sm:border sm:border-concept-line sm:shadow-[0_24px_60px_-20px_rgba(11,16,48,0.35)] overflow-hidden"
                 >
                     <header className="flex items-center gap-3 bg-concept-blue text-white px-4 sm:px-5 pb-3.5 pt-[max(0.875rem,env(safe-area-inset-top))]">
-                        <span className="relative w-10 h-10 rounded-full bg-concept-ink flex items-center justify-center font-poppins font-bold text-concept-yellow flex-shrink-0">
-                            C
+                        <span className="relative w-10 h-10 rounded-full bg-concept-ink flex items-center justify-center flex-shrink-0">
+                            <Image
+                                src="/assets/logo/lobo-guara-avatar.png"
+                                alt="Assistente Concept Digital"
+                                width={40}
+                                height={40}
+                                className="w-full h-full object-cover rounded-full"
+                            />
                             <span className="absolute -right-0.5 -bottom-0.5 w-3 h-3 rounded-full bg-whatsapp border-2 border-concept-blue" aria-hidden="true" />
                         </span>
                         <div className="flex flex-col min-w-0 flex-1">
@@ -246,8 +253,21 @@ export default function ChatWidget() {
                     </span>
                 )}
                 <span className="relative w-[60px] h-[60px] sm:w-16 sm:h-16 rounded-full bg-concept-blue text-white border-[3px] border-white flex items-center justify-center group-hover:scale-105 transition-transform shadow-[0_10px_30px_-10px_rgba(6,36,199,0.6)]">
-                    {open ? <CloseIcon /> : <ChatIcon />}
-                    {!open && <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-concept-yellow border-2 border-white" aria-hidden="true" />}
+                    {open ? (
+                        <CloseIcon />
+                    ) : (
+                        <div className="w-full h-full rounded-full overflow-hidden flex items-center justify-center">
+                            <Image
+                                src="/assets/logo/lobo-guara-avatar.png"
+                                alt="Assistente Lobo Guará Concept Digital"
+                                width={64}
+                                height={64}
+                                priority
+                                className="w-full h-full object-cover"
+                            />
+                        </div>
+                    )}
+                    {!open && <span className="absolute top-0.5 right-0.5 w-3.5 h-3.5 rounded-full bg-concept-yellow border-2 border-white z-10" aria-hidden="true" />}
                 </span>
             </button>
         </>
