@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Wolf from './Wolf';
 import WhatsAppLink, { WhatsAppIcon } from './WhatsAppLink';
+import { RESPONSE_PROMISE } from '@/lib/site';
 
 const Eyebrow = ({ children }: { children: ReactNode }) => (
     <span className="text-sm font-semibold tracking-[0.14em] uppercase text-concept-yellow">{children}</span>
@@ -40,9 +41,10 @@ export const Solutions = () => (
                 </span>
             </div>
             <div className="flex flex-col lg:items-end gap-4 flex-shrink-0">
-                <span className="text-[15px] text-white/85">Proposta sob medida após um diagnóstico rápido.</span>
+                <span className="text-[15px] text-white/85">Proposta sob medida após um diagnóstico rápido. {RESPONSE_PROMISE}.</span>
                 <WhatsAppLink
                     buttonId="package_whatsapp"
+                    thankYou
                     message="Olá! Quero um diagnóstico para o Ecossistema Integrado de Conversão (landing page + CRM + dashboard)."
                     className="self-start lg:self-end bg-concept-yellow text-concept-ink font-semibold text-base px-6 min-h-[52px] rounded-full flex items-center gap-2 hover:brightness-95 transition"
                 >
@@ -92,6 +94,7 @@ export const ContactCTA = () => (
                 <div className="flex flex-col sm:flex-row gap-3.5 mt-2">
                     <WhatsAppLink
                         buttonId="whatsapp_contact"
+                        thankYou
                         className="bg-concept-yellow text-concept-ink font-semibold text-[17px] pl-5 pr-7 min-h-[58px] rounded-full flex items-center justify-center gap-2.5 hover:brightness-95 transition"
                     >
                         <WhatsAppIcon className="w-[22px] h-[22px]" />
@@ -101,6 +104,10 @@ export const ContactCTA = () => (
                         Ver projetos
                     </a>
                 </div>
+                <span className="flex items-center gap-2 text-sm text-night-muted">
+                    <span aria-hidden="true" className="w-2 h-2 rounded-full bg-whatsapp" />
+                    {RESPONSE_PROMISE}.
+                </span>
             </div>
             <Wolf className="relative w-[260px] h-[195px] lg:w-[380px] lg:h-[285px] flex-shrink-0" />
         </div>

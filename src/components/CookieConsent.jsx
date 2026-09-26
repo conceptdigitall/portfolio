@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Cookie, X } from 'lucide-react';
+import Link from 'next/link';
 import { grantConsent } from '../lib/pixel';
 
 const CookieConsent = () => {
@@ -53,6 +54,7 @@ const CookieConsent = () => {
                             <p className="text-gray-400 text-sm leading-relaxed">
                                 Utilizamos cookies para melhorar sua experiência e analisar o tráfego do site.
                                 Ao clicar em &quot;Aceitar&quot;, você concorda com o uso de cookies para estes fins.
+                                {' '}<Link href="/privacidade" className="underline underline-offset-2 hover:text-white">Política de privacidade</Link>.
                             </p>
                         </div>
 

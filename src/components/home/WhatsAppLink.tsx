@@ -10,15 +10,20 @@ type Props = {
     className?: string;
     children: React.ReactNode;
     'aria-label'?: string;
+    /** Depois de abrir o WhatsApp em nova aba, leva esta aba para /obrigado (página de conversão). */
+    thankYou?: boolean;
 };
 
-const WhatsAppLink = ({ buttonId, message, className, children, ...rest }: Props) => (
+const WhatsAppLink = ({ buttonId, message, className, children, thankYou, ...rest }: Props) => (
     <a
         href={whatsappLink(message)}
         target="_blank"
         rel="noopener noreferrer"
         className={className}
-        onClick={() => trackWhatsAppClick(buttonId)}
+        onClick={() => {
+            trackWhatsAppClick(buttonId);
+            if (thankYou) setTimeout(() => window.location.assign('/obrigado'), 400);
+        }}
         {...rest}
     >
         {children}

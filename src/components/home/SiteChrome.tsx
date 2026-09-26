@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import WhatsAppLink, { WhatsAppIcon } from './WhatsAppLink';
 import Wolf from './Wolf';
@@ -25,10 +26,11 @@ const Wordmark = ({ size = 'text-base' }: { size?: string }) => (
 );
 
 const NAV = [
-    { href: '#projetos', label: 'Projetos' },
-    { href: '#solucoes', label: 'Soluções' },
-    { href: '#processo', label: 'Processo' },
-    { href: '#contato', label: 'Contato' },
+    { href: '/#projetos', label: 'Projetos' },
+    { href: '/#solucoes', label: 'Soluções' },
+    { href: '/#processo', label: 'Processo' },
+    { href: '/#faq', label: 'Dúvidas' },
+    { href: '/#contato', label: 'Contato' },
 ];
 
 export const SiteHeader = () => {
@@ -36,14 +38,14 @@ export const SiteHeader = () => {
     return (
         <header className="relative z-40 border-b border-night-rule">
             <div className="mx-auto max-w-[1440px] h-[88px] px-4 sm:px-6 lg:px-10 flex items-center justify-between gap-6">
-                <a href="#inicio" aria-label="Concept Digital, página inicial">
+                <Link href="/" aria-label="Concept Digital, página inicial">
                     <Wordmark />
-                </a>
+                </Link>
                 <nav aria-label="Principal" className="hidden md:flex items-center gap-8 xl:hidden">
                     {NAV.map((n) => (
-                        <a key={n.href} href={n.href} className="text-[15px] font-medium text-night-soft hover:text-concept-yellow transition-colors">
+                        <Link key={n.href} href={n.href} className="text-[15px] font-medium text-night-soft hover:text-concept-yellow transition-colors">
                             {n.label}
-                        </a>
+                        </Link>
                     ))}
                 </nav>
                 <WhatsAppLink
@@ -66,8 +68,8 @@ export const SiteFooter = () => {
     return (
         <footer className="bg-night border-t border-night-rule">
             <div className="mx-auto max-w-[1440px] px-4 sm:px-6 lg:px-20 pt-16 lg:pt-20 pb-28 lg:pb-10 flex flex-col gap-14">
-                <div className="grid grid-cols-2 lg:grid-cols-[340px_170px_220px_220px_1fr] gap-10 lg:gap-12">
-                    <div className="col-span-2 lg:col-span-1 flex flex-col gap-5">
+                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(300px,1.2fr)] gap-10 xl:gap-12">
+                    <div className="col-span-2 lg:col-span-3 xl:col-span-1 flex flex-col gap-5">
                         <Wordmark size="text-lg" />
                         <p className="text-base leading-relaxed text-night-muted max-w-sm">
                             Engenharia de vendas e design para negócios premium. Ativos digitais rápidos, elegantes e feitos para converter.
@@ -78,16 +80,16 @@ export const SiteFooter = () => {
                     <nav aria-label="Navegação do rodapé" className="flex flex-col gap-3.5">
                         <span className="text-[13px] font-semibold tracking-[0.14em] uppercase text-night-dim">Navegação</span>
                         {NAV.map((n) => (
-                            <a key={n.href} href={n.href} className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">{n.label}</a>
+                            <Link key={n.href} href={n.href} className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">{n.label}</Link>
                         ))}
                     </nav>
 
                     <div className="flex flex-col gap-3.5">
                         <span className="text-[13px] font-semibold tracking-[0.14em] uppercase text-night-dim">Soluções</span>
-                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Landing pages</a>
-                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">CRM e gestão de leads</a>
-                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Sistemas sob demanda</a>
-                        <a href="#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Ecossistema integrado</a>
+                        <Link href="/#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Landing pages</Link>
+                        <Link href="/#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">CRM e gestão de leads</Link>
+                        <Link href="/#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Sistemas sob demanda</Link>
+                        <Link href="/#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Ecossistema integrado</Link>
                     </div>
 
                     <div className="col-span-2 sm:col-span-1 flex flex-col gap-3.5">
@@ -96,16 +98,17 @@ export const SiteFooter = () => {
                             WhatsApp {WHATSAPP_DISPLAY}
                         </WhatsAppLink>
                         <span className="text-[15px] text-night-muted">Baixada Santista, SP</span>
+                        <Link href="/privacidade" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Política de privacidade</Link>
                     </div>
 
-                    <div className="col-span-2 lg:col-span-1 self-start bg-concept-blue rounded-3xl p-7 flex flex-col gap-4 text-white">
+                    <div className="col-span-2 lg:col-span-3 xl:col-span-1 self-start sm:max-w-[420px] xl:max-w-none bg-concept-blue rounded-3xl p-7 flex flex-col gap-4 text-white">
                         <span className="font-poppins text-[22px] font-bold leading-tight">Tem um projeto em mente?</span>
                         <span className="text-[15px] leading-relaxed text-white/90">Resposta direta, sem enrolação.</span>
                         <WhatsAppLink
                             buttonId="footer_whatsapp_card"
-                            className="bg-concept-yellow text-concept-ink font-semibold text-[15px] min-h-[50px] rounded-full flex items-center justify-center gap-2 hover:brightness-95 transition"
+                            className="bg-concept-yellow text-concept-ink font-semibold text-sm sm:text-[15px] min-h-[50px] px-5 py-2.5 rounded-full flex items-center justify-center text-center gap-2 hover:brightness-95 transition"
                         >
-                            <WhatsAppIcon className="w-5 h-5" />
+                            <WhatsAppIcon className="w-5 h-5 flex-shrink-0" />
                             Chamar no WhatsApp
                         </WhatsAppLink>
                     </div>
@@ -113,7 +116,7 @@ export const SiteFooter = () => {
 
                 <div className="border-t border-night-rule pt-7 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
                     <span className="text-sm text-night-dim">© {new Date().getFullYear()} Concept Digital. Todos os direitos reservados.</span>
-                    <a href="#inicio" className="text-sm font-medium text-night-soft hover:text-concept-yellow transition-colors">Voltar ao topo</a>
+                    <a href="#" className="text-sm font-medium text-night-soft hover:text-concept-yellow transition-colors">Voltar ao topo</a>
                 </div>
             </div>
         </footer>

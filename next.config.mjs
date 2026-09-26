@@ -50,6 +50,10 @@ const nextConfig = {
     // O painel administrativo agora é o CRM Concept (login feito lá).
     async redirects() {
         return [
+            // Links personalizados: curtos e fáceis de divulgar (bio, cartão, QR code)
+            { source: '/whatsapp', destination: 'https://wa.me/5513991353207?text=' + encodeURIComponent('Olá! Vim pelo site da Concept Digital.'), permanent: false },
+            { source: '/diagnostico', destination: 'https://wa.me/5513991353207?text=' + encodeURIComponent('Olá! Quero um diagnóstico para o meu negócio.'), permanent: false },
+            { source: '/projetos', destination: '/#projetos', permanent: false },
             { source: '/admin', destination: 'https://concept-crm-gamma.vercel.app/dashboard', permanent: false },
             { source: '/admin/:path*', destination: 'https://concept-crm-gamma.vercel.app/dashboard', permanent: false },
         ];

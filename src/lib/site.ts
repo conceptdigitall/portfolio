@@ -12,3 +12,9 @@ export const SITE_URL = (
 ).replace(/\/$/, '');
 
 export const SITE_NAME = 'Concept Digital';
+
+/**
+ * Promessa de resposta exibida perto dos botões de contato.
+ * Ajuste para o prazo que você consegue cumprir sempre.
+ */
+export const RESPONSE_PROMISE = 'Resposta no WhatsApp no mesmo dia útil';
