@@ -6,7 +6,7 @@ export default function FloatingBackButton() {
     return (
         <div className="fixed bottom-6 right-6 z-50 group">
             <Link
-                href="https://concept-digital-portfolio.vercel.app/"
+                href="https://conceptdigitalportfolio.vercel.app/"
                 className="flex items-center gap-2 bg-primary text-white px-5 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 hover:bg-blue-700"
             >
                 <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />

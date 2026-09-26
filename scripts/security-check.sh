@@ -3,13 +3,13 @@
 #  Checagem de segurança — Portfólio Concept Digital
 #  Uso (na pasta do portfólio):
 #     bash scripts/security-check.sh [URL_DO_SITE]
-#  Ex: bash scripts/security-check.sh https://concept-digital-portfolio.vercel.app
+#  Ex: bash scripts/security-check.sh https://conceptdigitalportfolio.vercel.app
 #
 #  Só LÊ: não altera código, banco nem configurações.
 #  Nenhum segredo é impresso por inteiro.
 # ============================================================
 
-SITE_URL="${1:-https://concept-digital-portfolio.vercel.app}"
+SITE_URL="${1:-https://conceptdigitalportfolio.vercel.app}"
 SITE_URL="${SITE_URL%/}"
 FAILS=0; WARNS=0
 

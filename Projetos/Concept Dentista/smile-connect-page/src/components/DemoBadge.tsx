@@ -15,7 +15,7 @@ const DemoBadge = () => {
             </div>
 
             <a
-                href="https://concept-digital-portfolio.vercel.app/#projetos"
+                href="https://conceptdigitalportfolio.vercel.app/"
                 className="pointer-events-auto group flex items-center gap-4 bg-primary px-6 py-4 rounded-none shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:brightness-110 active:scale-95"
                 style={{ boxShadow: '0 20px 40px -10px hsl(var(--primary) / 0.4)' }}
             >

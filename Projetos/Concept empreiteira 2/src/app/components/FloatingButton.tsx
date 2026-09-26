@@ -5,7 +5,7 @@ import { ArrowLeft } from "lucide-react";
 export function FloatingButton() {
     return (
         <a
-            href="https://concept-digital-portfolio.vercel.app/"
+            href="https://conceptdigitalportfolio.vercel.app/"
             target="_blank" // Opens in new tab, optional based on user preference
             rel="noopener noreferrer"
             className="fixed bottom-6 left-6 z-[100] group"
