@@ -10,8 +10,8 @@ export const projects: Project[] = [
         client: true,
         summary: "Vitrine, pedidos em tempo real, caixa e fiado.",
         description: "Sistema de delivery e e-commerce em tempo real para adegas, com painel administrativo completo: Kanban de pedidos, estoque, fechamento de caixa por motoboy e controle de fiado.",
-        image_url: null,
-        demo_link: null,
+        image_url: "/projects/adega-teles-mockup.jpeg",
+        demo_link: "https://adega-teles.vercel.app/",
         profile: "empresa"
     },
     {
@@ -23,8 +23,8 @@ export const projects: Project[] = [
         client: true,
         summary: "Landing page, agendamento e painel do barbeiro.",
         description: "Landing page com agendamento sem atrito, serviços e preços dinâmicos, localização e painel do barbeiro com métricas e agenda.",
-        image_url: null,
-        demo_link: null,
+        image_url: "/projects/barbearia-do-alemao-mockup.jpeg",
+        demo_link: "https://barbeariadoalemao.vercel.app/",
         profile: "empresa"
     },
     {
