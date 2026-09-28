@@ -27,6 +27,7 @@ const Wordmark = ({ size = 'text-base' }: { size?: string }) => (
 
 const NAV = [
     { href: '/#projetos', label: 'Projetos' },
+    { href: '/recepcionista-ia', label: 'Recepcionista IA' },
     { href: '/#solucoes', label: 'Soluções' },
     { href: '/#processo', label: 'Processo' },
     { href: '/#faq', label: 'Dúvidas' },
@@ -41,7 +42,7 @@ export const SiteHeader = () => {
                 <Link href="/" aria-label="Concept Digital, página inicial">
                     <Wordmark />
                 </Link>
-                <nav aria-label="Principal" className="hidden md:flex items-center gap-8 xl:hidden">
+                <nav aria-label="Principal" className="hidden md:flex items-center gap-6 lg:gap-8">
                     {NAV.map((n) => (
                         <Link key={n.href} href={n.href} className="text-[15px] font-medium text-night-soft hover:text-concept-yellow transition-colors">
                             {n.label}
@@ -86,6 +87,7 @@ export const SiteFooter = () => {
 
                     <div className="flex flex-col gap-3.5">
                         <span className="text-[13px] font-semibold tracking-[0.14em] uppercase text-night-dim">Soluções</span>
+                        <Link href="/recepcionista-ia" className="text-[15px] text-concept-sky hover:text-concept-yellow transition-colors font-medium">Recepcionista de IA (WhatsApp)</Link>
                         <Link href="/#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Landing pages</Link>
                         <Link href="/#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">CRM e gestão de leads</Link>
                         <Link href="/#solucoes" className="text-[15px] text-night-soft hover:text-concept-yellow transition-colors">Sistemas sob demanda</Link>

@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import Link from 'next/link';
 import Wolf from './Wolf';
 import WhatsAppLink, { WhatsAppIcon } from './WhatsAppLink';
 import { RESPONSE_PROMISE } from '@/lib/site';
@@ -12,9 +13,27 @@ const H2 = ({ children, className = '' }: { children: ReactNode; className?: str
 );
 
 const SOLUTIONS = [
-    { title: 'Landing page de alta conversão', text: 'Design minimalista, velocidade extrema e um caminho direto até o WhatsApp.' },
-    { title: 'CRM próprio e gestão de leads', text: 'Para quem já tem tráfego e não quer mais perder vendas no WhatsApp.' },
-    { title: 'Sistemas sob demanda', text: 'Web apps, plataformas internas, automações, integrações e e-commerce.' },
+    {
+        title: 'Recepcionista de IA no WhatsApp',
+        text: 'Atendimento humanizado 24h que qualifica, agenda e responde no tom da sua marca.',
+        link: '/recepcionista-ia',
+        cta: 'Testar simulador ao vivo →',
+        highlight: true,
+    },
+    {
+        title: 'Landing page de alta conversão',
+        text: 'Design minimalista, velocidade extrema e um caminho direto até o WhatsApp.',
+        link: '/#projetos',
+        cta: 'Ver projetos →',
+        highlight: false,
+    },
+    {
+        title: 'CRM próprio e gestão de leads',
+        text: 'Para quem já tem tráfego e não quer mais perder vendas no WhatsApp.',
+        link: '#contato',
+        cta: 'Saber mais →',
+        highlight: false,
+    },
 ];
 
 export const Solutions = () => (
@@ -25,10 +44,34 @@ export const Solutions = () => (
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {SOLUTIONS.map((s, i) => (
-                <div key={s.title} className="bg-night-card border border-night-line rounded-[28px] p-8 flex flex-col gap-4 min-h-[240px]">
-                    <span className="font-poppins text-[15px] font-semibold text-concept-sky">{String(i + 1).padStart(2, '0')}</span>
-                    <span className="font-poppins text-[26px] font-bold leading-tight">{s.title}</span>
-                    <span className="text-base leading-relaxed text-night-muted">{s.text}</span>
+                <div
+                    key={s.title}
+                    className={`bg-night-card border rounded-[28px] p-8 flex flex-col justify-between gap-4 min-h-[260px] transition-all ${
+                        s.highlight
+                            ? 'border-concept-yellow/40 hover:border-concept-yellow shadow-[0_0_25px_rgba(252,224,38,0.08)]'
+                            : 'border-night-line hover:border-night-edge'
+                    }`}
+                >
+                    <div className="flex flex-col gap-3">
+                        <div className="flex items-center justify-between">
+                            <span className="font-poppins text-[15px] font-semibold text-concept-sky">{String(i + 1).padStart(2, '0')}</span>
+                            {s.highlight && (
+                                <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-concept-yellow/15 border border-concept-yellow/30 text-concept-yellow">
+                                    Simulador Disponível
+                                </span>
+                            )}
+                        </div>
+                        <span className="font-poppins text-[26px] font-bold leading-tight">{s.title}</span>
+                        <span className="text-base leading-relaxed text-night-muted">{s.text}</span>
+                    </div>
+                    {s.link && (
+                        <Link
+                            href={s.link}
+                            className="text-sm font-semibold text-concept-yellow hover:text-white transition-colors flex items-center gap-1.5 self-start pt-2"
+                        >
+                            {s.cta}
+                        </Link>
+                    )}
                 </div>
             ))}
         </div>
