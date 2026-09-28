@@ -6,6 +6,7 @@ import { projects, projectFilters } from '@/data/portfolio';
 import { Project, ProjectCategory } from '@/types/project';
 import { whatsappLink } from '@/lib/whatsapp';
 import Wolf from './Wolf';
+import AiReceptionistModal, { AI_DEMO_HASH } from './AiReceptionistModal';
 
 const trackProjectClick = (project: Project) => {
     import('@/lib/supabase').then(({ trackEvent }) => {
@@ -62,6 +63,35 @@ const ProjectCard = ({ project, index }: { project: Project; index: number }) =>
     );
 };
 
+/** Card fixo da Recepcionista de IA: abre o simulador num modal, sem sair da home. */
+const AiReceptionistCard = () => (
+    <a
+        href={AI_DEMO_HASH}
+        aria-label="Recepcionista de IA: testar o simulador ao vivo (abre nesta página)"
+        className="group relative flex flex-col rounded-3xl overflow-hidden border border-concept-yellow/40 hover:border-concept-yellow bg-night-raise text-night-text transition-colors shadow-[0_0_25px_rgba(252,224,38,0.08)]"
+    >
+        <div className="relative h-44 mx-2.5 mt-2.5 rounded-2xl overflow-hidden bg-[#0B1238] p-4 flex flex-col justify-end gap-2">
+            <span className="absolute top-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-concept-yellow/15 border border-concept-yellow/30 text-concept-yellow">
+                Teste ao vivo
+            </span>
+            <span className="self-end max-w-[80%] rounded-2xl rounded-br-md bg-[#005C4B] px-3 py-2 text-xs text-white">
+                Vocês têm horário amanhã?
+            </span>
+            <span className="self-start max-w-[85%] rounded-2xl rounded-bl-md bg-[#1F2C34] px-3 py-2 text-xs text-white/90 transition-transform duration-500 group-hover:-translate-y-0.5">
+                Temos sim! Às 10h ou às 15h30. Qual fica melhor para você?
+            </span>
+        </div>
+        <div className="flex flex-col gap-1.5 px-[18px] pt-4 pb-[18px] flex-1">
+            <span className="text-xs font-semibold tracking-[0.08em] uppercase text-concept-yellow">Inteligência artificial</span>
+            <span className="font-poppins text-[19px] font-semibold leading-tight">Recepcionista de IA</span>
+            <span className="text-sm leading-normal text-night-muted">Atende no WhatsApp 24h, qualifica e agenda. Teste em 5 nichos.</span>
+            <span className="mt-auto pt-3 text-sm font-semibold text-concept-yellow underline-offset-4 group-hover:underline">
+                Testar simulador
+            </span>
+        </div>
+    </a>
+);
+
 const ProjectsGrid = () => {
     const [active, setActive] = useState<'all' | ProjectCategory>('all');
 
@@ -105,10 +135,12 @@ const ProjectsGrid = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {(active === 'all' || active === 'sys') && <AiReceptionistCard />}
                 {list.map((p, i) => (
                     <ProjectCard key={p.id} project={p} index={i} />
                 ))}
             </div>
+            <AiReceptionistModal />
         </section>
     );
 };

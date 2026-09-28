@@ -16,7 +16,7 @@ const SOLUTIONS = [
     {
         title: 'Recepcionista de IA no WhatsApp',
         text: 'Atendimento humanizado 24h que qualifica, agenda e responde no tom da sua marca.',
-        link: '/recepcionista-ia',
+        link: '/#simulador-ia',
         cta: 'Testar simulador ao vivo →',
         highlight: true,
     },
