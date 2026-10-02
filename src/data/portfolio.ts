@@ -28,6 +28,19 @@ export const projects: Project[] = [
         profile: "empresa"
     },
     {
+        id: 15,
+        title: "Circuito FTV Cubatão",
+        name: "Circuito FTV Cubatão",
+        niche: "Eventos esportivos",
+        category: "clientes",
+        client: true,
+        summary: "Inscrição de duplas, patrocínio e camisa personalizável.",
+        description: "Plataforma do campeonato de futevôlei: inscrição de duplas com Pix, área paga para patrocinadores posicionarem a própria logo na camisa oficial e painel do organizador com atletas, duplas, pagamentos e patrocínios.",
+        image_url: "/projects/ftv-cubatao-mockup.jpeg",
+        demo_link: "https://circuito-ftv-cubatao.vercel.app/",
+        profile: "empresa"
+    },
+    {
         id: 3,
         title: "Engenharia de Autoridade para Escritórios de Advocacia",
         name: "Concept Advogado",
