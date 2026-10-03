@@ -26,6 +26,7 @@ const Wordmark = ({ size = 'text-base' }: { size?: string }) => (
 );
 
 const NAV = [
+    { href: '/#sistemas', label: 'Sistemas' },
     { href: '/#projetos', label: 'Projetos' },
     { href: '/#simulador-ia', label: 'Recepcionista IA' },
     { href: '/#solucoes', label: 'Soluções' },

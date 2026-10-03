@@ -244,7 +244,7 @@ export const NICHES: NicheData[] = [
     name: 'Barbearias & Salões',
     category: 'Beleza & Bem-Estar',
     icon: '✂️',
-    businessName: 'Barbearia do Alemão 777',
+    businessName: 'Barbearia do Lucas',
     avatar: '/recepcionista/barbearia.jpg',
     defaultPrompt: 'Tem horário pra cortar o cabelo e fazer a barba hoje ainda?',
     leadProfile: 'Cliente buscando corte degradê e barba com agilidade.',
@@ -259,7 +259,7 @@ export const NICHES: NicheData[] = [
         {
           id: '2',
           sender: 'ai',
-          text: 'Boa noite! Seja bem-vindo à Barbearia do Alemão 777.\n\nPara esta noite, dispomos de uma última vaga às 19h30 para os serviços de corte e barboterapia relaxante com toalha quente.\n\nDeseja que reservemos este horário em seu nome?',
+          text: 'Boa noite! Seja bem-vindo à Barbearia do Lucas.\n\nPara esta noite, dispomos de uma última vaga às 19h30 para os serviços de corte e barboterapia relaxante com toalha quente.\n\nDeseja que reservemos este horário em seu nome?',
           time: '18:40',
         },
       ],
@@ -273,7 +273,7 @@ export const NICHES: NicheData[] = [
         {
           id: '2',
           sender: 'ai',
-          text: 'Opa, fala meu amigo! Tranquilidade? 💈\n\nTenho exatamente uma vaga aberta hoje às 19h30 com o Alemão! Dá pra fazer aquele degradê alinhado e navalhado.\n\nBora travar esse horário pro seu nome?',
+          text: 'Opa, fala meu amigo! Tranquilidade? 💈\n\nTenho exatamente uma vaga aberta hoje às 19h30 com o Lucas! Dá pra fazer aquele degradê alinhado e navalhado.\n\nBora travar esse horário pro seu nome?',
           time: '18:40',
         },
       ],
