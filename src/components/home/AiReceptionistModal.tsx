@@ -22,6 +22,8 @@ const trackOpen = () => {
 
 export default function AiReceptionistModal() {
     const [open, setOpen] = useState(false);
+    // Nicho inicial do simulador: vem do `data-niche` do link clicado (ex.: seção Sistemas).
+    const [niche, setNiche] = useState<string | undefined>();
     const closeRef = useRef<HTMLButtonElement>(null);
     const lastFocus = useRef<HTMLElement | null>(null);
 
@@ -43,6 +45,7 @@ export default function AiReceptionistModal() {
             const url = new URL(a.href);
             if (url.pathname !== window.location.pathname) return;
             e.preventDefault();
+            setNiche(a.dataset.niche);
             history.pushState(null, '', AI_DEMO_HASH);
             sync();
         };
@@ -112,7 +115,7 @@ export default function AiReceptionistModal() {
                 </div>
 
                 <div className="px-4 sm:px-10 py-6 sm:py-8">
-                    <AiReceptionistDemo />
+                    <AiReceptionistDemo initialNicheId={niche} />
                     <p className="pt-6 text-center text-sm text-night-muted">
                         Quer ver a comparação com chatbots comuns e as perguntas frequentes?{' '}
                         <Link href="/recepcionista-ia" className="text-concept-yellow hover:text-white underline-offset-4 hover:underline">

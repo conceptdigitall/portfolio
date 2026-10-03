@@ -92,7 +92,7 @@ export default function RootLayout({
                 </Suspense>
                 <CookieConsent />
                 <SiteHeader />
-                <main className="min-h-screen relative overflow-x-hidden">
+                <main className="min-h-screen relative overflow-x-clip">
                     {children}
                 </main>
                 <SiteFooter />

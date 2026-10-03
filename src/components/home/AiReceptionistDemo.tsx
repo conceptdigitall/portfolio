@@ -24,8 +24,10 @@ import {
   ArrowRight 
 } from 'lucide-react';
 
-export default function AiReceptionistDemo() {
-  const [selectedNicheId, setSelectedNicheId] = useState<string>('clinica');
+export default function AiReceptionistDemo({ initialNicheId }: { initialNicheId?: string }) {
+  const [selectedNicheId, setSelectedNicheId] = useState<string>(
+    () => NICHES.find((n) => n.id === initialNicheId)?.id ?? 'clinica'
+  );
   const [selectedTone, setSelectedTone] = useState<ToneType>('sofisticado');
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [isTyping, setIsTyping] = useState<boolean>(false);
