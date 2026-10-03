@@ -30,8 +30,8 @@ const SOLUTIONS = [
     {
         title: 'CRM próprio e gestão de leads',
         text: 'Para quem já tem tráfego e não quer mais perder vendas no WhatsApp.',
-        link: '#contato',
-        cta: 'Saber mais →',
+        link: '/#sistemas',
+        cta: 'Ver o sistema funcionando →',
         highlight: false,
     },
 ];
