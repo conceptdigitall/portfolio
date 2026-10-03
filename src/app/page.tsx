@@ -8,8 +8,8 @@ export default function Home() {
     return (
         <>
             <HeroBento />
-            <ProjectsGrid />
             <Systems />
+            <ProjectsGrid />
             <Testimonials />
             <Solutions />
             <Process />
