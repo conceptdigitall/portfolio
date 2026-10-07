@@ -45,3 +45,5 @@ Thumbs.db
 CRM Concept/
 Projetos/Adega Teles/
 
+.vercel
+.env*

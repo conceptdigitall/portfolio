@@ -1,5 +1,13 @@
 export const projects = [
     {
+        id: 17,
+        title: "MA Automação & Serviços Condominiais",
+        category: "Clientes",
+        description: "Landing page técnica e captação de condomínios na Baixada Santista: automação de portões rápidos, CFTV, interfones, bombas de recalque e produtos a granel.",
+        image_url: "/projects/ma-automacao-mockup.jpg",
+        demo_link: "https://ma-automacao.vercel.app/"
+    },
+    {
         id: 1,
         title: "E-commerce Magnético para Produtos Infantis",
         category: "E-commerce",
