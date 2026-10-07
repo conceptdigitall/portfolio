@@ -41,6 +41,19 @@ export const projects: Project[] = [
         profile: "empresa"
     },
     {
+        id: 17,
+        title: "MA Automação & Serviços Condominiais",
+        name: "MA Automação",
+        niche: "Condomínios",
+        category: "clientes",
+        client: true,
+        summary: "Portões rápidos, CFTV, bombas e química a granel.",
+        description: "Landing page de alta conversão para empresa de manutenção predial e zeladoria na Baixada Santista: automação de portões rápidos, interfonia, câmeras CFTV, bombas d'água de recalque e distribuição de produtos de limpeza a granel.",
+        image_url: "/projects/ma-automacao-mockup.jpg",
+        demo_link: "https://ma-automacao.vercel.app/",
+        profile: "empresa"
+    },
+    {
         id: 3,
         title: "Engenharia de Autoridade para Escritórios de Advocacia",
         name: "Concept Advogado",
