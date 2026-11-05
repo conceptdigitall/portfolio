@@ -1,5 +1,21 @@
 export const projects = [
     {
+        id: 18,
+        title: "ADSUMUS Acesso por Corda",
+        category: "Clientes",
+        description: "Site institucional de alpinismo industrial: manutenção de fachadas, pintura industrial e teste de percussão, com galeria de obras, orçamento e assistente com IA.",
+        image_url: "/projects/adsumus-mockup.jpg",
+        demo_link: "https://cume-alpinismo.vercel.app/"
+    },
+    {
+        id: 19,
+        title: "Dr. Fabricio Areco · Odontologia",
+        category: "Clientes",
+        description: "Site de cirurgião-dentista em Santos: odontologia estética e restauradora, casos reais de antes e depois e agendamento direto pelo WhatsApp.",
+        image_url: "/projects/fabricio-areco-mockup.jpg",
+        demo_link: "https://fabricio-areco.vercel.app/"
+    },
+    {
         id: 17,
         title: "MA Automação & Serviços Condominiais",
         category: "Clientes",
