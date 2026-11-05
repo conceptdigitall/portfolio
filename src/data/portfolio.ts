@@ -54,6 +54,32 @@ export const projects: Project[] = [
         profile: "empresa"
     },
     {
+        id: 18,
+        title: "ADSUMUS Acesso por Corda",
+        name: "ADSUMUS",
+        niche: "Alpinismo industrial",
+        category: "clientes",
+        client: true,
+        summary: "Fachadas e pintura industrial sem andaime.",
+        description: "Site institucional para empresa de acesso por corda: manutenção de fachadas, pintura industrial, lavagem, troca de revestimento e teste de percussão. Páginas por serviço, galeria de obras, trabalhe conosco, pedido de orçamento e assistente com IA que tira dúvidas do cliente.",
+        image_url: "/projects/adsumus-mockup.jpg",
+        demo_link: "https://cume-alpinismo.vercel.app/",
+        profile: "empresa"
+    },
+    {
+        id: 19,
+        title: "Dr. Fabricio Areco · Odontologia",
+        name: "Dr. Fabricio Areco",
+        niche: "Odontologia",
+        category: "clientes",
+        client: true,
+        summary: "Estética dental, antes e depois e agenda no WhatsApp.",
+        description: "Site pessoal para cirurgião-dentista em Santos, focado em odontologia estética e restauradora: tratamentos, casos reais de antes e depois com comparador interativo, método de trabalho, dúvidas frequentes e agendamento direto pelo WhatsApp.",
+        image_url: "/projects/fabricio-areco-mockup.jpg",
+        demo_link: "https://fabricio-areco.vercel.app/",
+        profile: "autonomo"
+    },
+    {
         id: 3,
         title: "Engenharia de Autoridade para Escritórios de Advocacia",
         name: "Concept Advogado",
