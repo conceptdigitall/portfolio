@@ -116,6 +116,24 @@
 svg.spin, svg.orbit { transform-box: border-box; }
 @keyframes concept-spin { to { transform: rotate(360deg); } }
 
+@media (prefers-reduced-motion: no-preference) {
+    .wolf-3d-tilt {
+        transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+        transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+}
+
+/* Indicador de aba ativa seguro para forced-colors (WCAG 1.4.1) */
+.saas-tab {
+    position: relative;
+}
+.saas-tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    inset: auto 18px 0;
+    border-block-end: 3px solid #FCE026;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .wolf-draw, .wolf-float, .spin, .orbit { animation: none; stroke-dashoffset: 0; }
 }

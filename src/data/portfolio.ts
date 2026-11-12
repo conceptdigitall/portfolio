@@ -80,6 +80,19 @@ export const projects: Project[] = [
         profile: "autonomo"
     },
     {
+        id: 20,
+        title: "Essence Wear · Streetwear Cristão",
+        name: "Essence Wear",
+        niche: "Moda & E-commerce",
+        category: "clientes",
+        client: true,
+        summary: "E-commerce autoral com lookbook interativo e catálogo no CRM.",
+        description: "Loja virtual e vitrine de drop para marca de streetwear cristão: identidade visual autoral, cards com virada 3D frente e costas, lookbook editorial e catálogo integrado ao CRM Concept.",
+        image_url: "/projects/essence-wear-mockup.png",
+        demo_link: "https://narrow-gate-nine.vercel.app/",
+        profile: "empresa"
+    },
+    {
         id: 3,
         title: "Engenharia de Autoridade para Escritórios de Advocacia",
         name: "Concept Advogado",

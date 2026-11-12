@@ -201,4 +201,12 @@ export const SYSTEM_CASES: SystemCase[] = [
         image: '/projects/ftv-cubatao-mockup.jpeg',
         link: 'https://circuito-ftv-cubatao.vercel.app/',
     },
+    {
+        niche: 'Moda & Streetwear',
+        name: 'Essence Wear',
+        problem: 'Vendas de drops fechadas manualmente por DM sem vitrine de marca nem controle de estoque unificado.',
+        delivery: 'E-commerce autoral com virada frente/costas das peças, lookbook editorial e catálogo conectado ao CRM Concept.',
+        image: '/projects/essence-wear-mockup.png',
+        link: 'https://narrow-gate-nine.vercel.app/',
+    },
 ];
